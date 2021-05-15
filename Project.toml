@@ -3,6 +3,13 @@ uuid = "55f7864d-8a34-467b-8299-a15693780429"
 authors = ["Pavan Chaggar"]
 version = "0.1.0"
 
+[deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+LightGraphs = "093fc24a-ae57-5d10-9952-331d41423f4d"
+LightXML = "9c8b4983-aa76-5018-a973-4c85ecc9e179"
+SimpleWeightedGraphs = "47aef6b3-ad0c-573a-a1e2-d07658019622"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+
 [compat]
 julia = "1.6"
 

@@ -1,5 +1,13 @@
 module Connectomes
 
-# Write your package code here.
+using LightXML
+using DataFrames
+using SparseArrays
+using SimpleWeightedGraphs
+using LightGraphs
+
+include("graphml.jl")
+
+export Connectome
 
 end
