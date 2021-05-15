@@ -5,7 +5,7 @@ function plot_mesh(mesh_path::String=fspath; alpha::Float64=1.0, transparent::Bo
     mesh(fsbrain, color=(:grey, alpha), transparency=transparent, show_axis=false)
 end
 
-function plot_connectome(connectome::Connectome; node_size)
+function plot_connectome(connectome::Connectome; node_size=1.0)
     x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
 
     coordindex = findall(x->x>0, connectome.A)

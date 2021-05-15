@@ -5,6 +5,7 @@ using Test
 using SparseArrays
 using DataFrames
 using LinearAlgebra
+using FileIO
 
 @testset "Connectomes.jl" begin
     connectome_path = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/connectomes/hcp-scale1-standard-master.graphml"
