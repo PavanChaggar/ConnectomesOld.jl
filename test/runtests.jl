@@ -1,3 +1,5 @@
+using Revise
+
 using Connectomes
 using Test
 using SparseArrays
@@ -17,3 +19,9 @@ using DataFrames
     @test length(connectome.parc.ID) == 83 
 
 end
+
+connectome_path = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/connectomes/hcp-scale1-standard-master.graphml"
+
+connectome = Connectome(connectome_path)
+
+plot_connectome(connectome;size=1.0)

@@ -36,10 +36,6 @@ function get_node_attributes(graph)
     return DataFrame(ID=nID, Region=region, Label=labels, x=x, y=y, z=z)
 end
 
-graph_filter(A, cutoff) = A .* (A .> cutoff)
-
-max_norm(M) = M ./ maximum(M)
-
 function get_adjacency_matrix(graph)
     A = spzeros(83,83)
     local n
@@ -71,6 +67,10 @@ function load_graphml(graph_path::String)
     return node_attributes, A
 end
 
+graph_filter(A, cutoff) = A .* (A .> cutoff)
+
+max_norm(M) = M ./ maximum(M)
+
 struct Connectome
     parc::DataFrame
     graph::SimpleWeightedGraph{Int64, Float64}
@@ -84,4 +84,11 @@ struct Connectome
         L = laplacian_matrix(Graph)
         new(parc, Graph, A, D, L)
     end
+
+    function Connectome(parc, A)
+        Graph = SimpleWeightedGraph(A)
+        new(parc, Graph, adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
+    end
 end
+
+

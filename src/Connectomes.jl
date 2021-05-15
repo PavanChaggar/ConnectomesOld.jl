@@ -11,7 +11,7 @@ using FileIO
 using LinearAlgebra
 using Colors
 
-include("graphml.jl")
+include("graphs.jl")
 export Connectome
 export graph_filter
 
