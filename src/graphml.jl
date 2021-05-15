@@ -18,23 +18,27 @@ function get_node_attributes(graph)
     for i ∈ 1:n_nodes
         for j ∈ child_elements(graph["node"][i])
             if attribute(j, "key") == "d0"
-                coords[i, 1] = parse(Float64, content(j))
+                coords[i, 1] = parse(Float64, LightXML.content(j))
             elseif attribute(j, "key") == "d1"
-                coords[i, 2] = parse(Float64, content(j))
+                coords[i, 2] = parse(Float64, LightXML.content(j))
             elseif attribute(j, "key") == "d2"
-                coords[i, 3] = parse(Float64, content(j))
+                coords[i, 3] = parse(Float64, LightXML.content(j))
             elseif attribute(j, "key") == "d3"
-                nID[i] = parse(Int, content(j))
+                nID[i] = parse(Int, LightXML.content(j))
             elseif attribute(j, "key") == "d4"
-                region[i] = content(j)
+                region[i] = LightXML.content(j)
             elseif attribute(j, "key") == "d6"
-                labels[i] = content(j)
+                labels[i] = LightXML.content(j)
             end
         end
     end
     x, y, z = coords[:,1], coords[:,2], coords[:,3]
     return DataFrame(ID=nID, Region=region, Label=labels, x=x, y=y, z=z)
 end
+
+graph_filter(A, cutoff) = A .* (A .> cutoff)
+
+max_norm(M) = M ./ maximum(M)
 
 function get_adjacency_matrix(graph)
     A = spzeros(83,83)
@@ -45,14 +49,16 @@ function get_adjacency_matrix(graph)
         j = parse(Int, attribute(edge, "target"))
         for child in child_elements(edge)
             if attribute(child, "key") == "d9"
-                n = parse(Float64, content(child))
+                n = parse(Float64, LightXML.content(child))
             elseif attribute(child, "key") == "d12"
-               l = parse(Float64, content(child))
+               l = parse(Float64, LightXML.content(child))
             end
         end
-        A[i,j] = 1
+        A[i,j] = n / l^2
     end
-    return SimpleWeightedGraph(A + transpose(A))
+    Anorm = max_norm(A)
+
+    return SimpleWeightedGraph(Anorm + transpose(Anorm))
 end
 
 function load_graphml(graph_path::String)
@@ -66,16 +72,16 @@ function load_graphml(graph_path::String)
 end
 
 struct Connectome
-    labels::DataFrame
+    parc::DataFrame
     graph::SimpleWeightedGraph{Int64, Float64}
     A::SparseMatrixCSC{Float64, Int64}
     D::SparseMatrixCSC{Float64, Int64}
     L::SparseMatrixCSC{Float64, Int64}
     function Connectome(graph_path::String)
-        labels, Graph = load_graphml(graph_path)
+        parc, Graph = load_graphml(graph_path)
         A = adjacency_matrix(Graph)
         D = degree_matrix(Graph)
         L = laplacian_matrix(Graph)
-        new(labels, Graph, A, D, L)
+        new(parc, Graph, A, D, L)
     end
 end
