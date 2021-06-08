@@ -19,5 +19,6 @@ include("plotting.jl")
 export plot_mesh
 export plot_roi
 export plot_connectome
+export plot_parc
 
 end

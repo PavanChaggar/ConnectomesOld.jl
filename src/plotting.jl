@@ -44,3 +44,14 @@ function plot_connectome(connectome::Connectome; node_size=1.0)
 
     return fig
 end
+
+function plot_parc(connectome::Connectome; alpha=1.0)
+    assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
+    colors = distinguishable_colors(83)
+    fig = mesh(load(assetpath*"meshes/DKT/roi_1.obj"),transparency=false, show_axis=false)
+    for i in connectome.parc[!,:ID]
+        roi = load(assetpath * "meshes/DKT/roi_$(i).obj")
+        mesh!(roi, color=(colors[i], alpha), transparency=false, show_axis=false)
+    end
+    fig
+end
