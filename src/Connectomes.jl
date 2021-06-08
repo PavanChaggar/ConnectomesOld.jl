@@ -17,6 +17,7 @@ export graph_filter
 
 include("plotting.jl")
 export plot_mesh
+export plot_roi
 export plot_connectome
 
 end
