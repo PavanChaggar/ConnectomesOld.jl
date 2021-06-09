@@ -20,5 +20,6 @@ export plot_mesh
 export plot_roi
 export plot_connectome
 export plot_parc
+export plot_roi_x
 
 end

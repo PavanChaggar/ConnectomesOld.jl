@@ -1,5 +1,4 @@
 using Revise
-using Revise
 
 using Connectomes
 
@@ -28,11 +27,9 @@ plot_mesh()
 
 plot_parc(connectome; alpha=1.0)
 
-plot_roi(connectome, "Hippocampus")
+plot_roi(connectome, "entorhinal")
 plot_roi(connectome, ["Hippocampus", "brainstem"])
 
 subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 
 plot_roi(connectome, connectome.parc[subcortex,:Label])
-
-
