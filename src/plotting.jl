@@ -16,28 +16,40 @@ Hemisphere = Dict(zip([:left, :right], [lh_cortex, rh_cortex]))
 
 function plot_cortex(region::Symbol; alpha::Float64=1.0, transparent::Bool=false)
     f = set_fig((700,700))
-    mesh!(load(Hemisphere[region]), color=(:grey, alpha), transparency=transparent)
+    plot_cortex!(region)
     f
 end
 
 function plot_cortex(; alpha::Float64=1.0, transparent::Bool=false)
     f = set_fig((700,700))
-    mesh!(load(Hemisphere[:left]), color=(:grey, alpha), transparency=transparent)
-    mesh!(load(Hemisphere[:right]), color=(:grey, alpha), transparency=transparent)
-
+    plot_cortex!()
     f
 end
 
-function get_hemisphere(connectome::Connectome, hemisphere::Symbol)
-    findall(x -> x == string(hemisphere), connectome.parc.Hemisphere)
+function plot_cortex!(region::Symbol; alpha::Float64=1.0, transparent::Bool=false)
+    mesh!(load(Hemisphere[region]), color=(:grey, alpha), transparency=transparent)
+end
+
+function plot_cortex!(; alpha::Float64=1.0, transparent::Bool=false)
+    plot_cortex!(:left;alpha, transparent)
+    plot_cortex!(:right;alpha, transparent)
+end
+
+function get_hemisphere(parc, hemisphere::Symbol)
+    ids = findall(x -> x == string(hemisphere), parc.Hemisphere)
+    parc[ids,:ID]
+end
+
+function get_roi(parc::DataFrame, roi::String)
+    findall(x -> occursin(roi, x), parc.Label)  
 end
 
 function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
-    h_ids = get_hemisphere(connectome, hemisphere)
+    h_ids = get_hemisphere(connectome.parc, hemisphere)
 
     colors = distinguishable_colors(length(h_ids))
     for (i, j) in enumerate(h_ids)
-        roi = load(fspath * "/DKT/roi_$(j).obj")
+        roi = load(fspath * "DKT/roi_$(j).obj")
         mesh!(roi, color=(colors[i], alpha), transparency=false, show_axis=false)
     end
 end
@@ -54,6 +66,67 @@ function plot_parc(connectome::Connectome; alpha=1.0)
     plot_parc!(connectome, :right;alpha)
     f
 end
+
+function plot_roi!(roi::Int, colour, roi_alpha)
+    meshpath = fspath * "DKT/roi_$(roi).obj"
+    mesh!(load(meshpath), color=(colour, roi_alpha), transparency=false)
+end
+
+function plot_roi(connectome::Connectome, roi::String; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+
+    f = set_fig((700,700))
+    plot_cortex!(;alpha=cortex_alpha, transparent=transparent)
+    
+    ID = get_roi(connectome.parc, roi)
+    
+    for i in ID
+        plot_roi!(i, colour, roi_alpha)
+    end
+    f
+end
+
+function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+
+    f = set_fig((700,700))
+    plot_cortex!(hemisphere; alpha=cortex_alpha, transparent=transparent)
+    
+    ID = get_roi(connectome.parc, roi)
+    h_ID = get_hemisphere(connectome.parc[ID,:], hemisphere)
+    for j in h_ID
+        plot_roi!(j, colour, roi_alpha)
+    end
+    f
+end
+
+function plot_roi(connectome::Connectome, roi::Vector{String}; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+
+    f = set_fig((700,700))
+    plot_cortex!(;alpha=cortex_alpha, transparent=transparent)
+    
+    for i in roi
+        ID = get_roi(connectome.parc, i)
+        for j in ID
+            plot_roi!(j, colour, roi_alpha)
+        end
+    end
+    f
+end
+
+function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbol; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+
+    f = set_fig((700,700))
+    plot_cortex!(hemisphere; alpha=cortex_alpha, transparent=transparent)
+    
+    for i in roi
+        ID = get_roi(connectome.parc, i)
+        h_ID = get_hemisphere(connectome.parc[ID,:], hemisphere)
+        for j in h_ID
+            plot_roi!(j, colour, roi_alpha)
+        end
+    end
+    f
+end
+
 
 function plot_mesh(mesh_path::String=fspath; alpha::Float64=1.0, transparent::Bool=false)
     fsbrain = load(mesh_path*"cortical-bert.obj")

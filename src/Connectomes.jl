@@ -18,7 +18,9 @@ export graph_filter
 include("plotting.jl")
 export plot_cortex
 export plot_mesh
+export testplot
 export plot_roi
+export plot_roi!
 export plot_connectome
 export plot_parc
 export plot_roi_x

@@ -1,7 +1,5 @@
 using Revise
-
 using Connectomes
-
 using GLMakie
 using FileIO
 using Colors
@@ -12,7 +10,12 @@ connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
 connectome = Connectome(connectome_path)
 
 plot_cortex()
-plot_parc(connectome)
+
+
+plot_parc(connectome,:right)
+
+
+plot_roi(connectome, "Hippocampus",:left)
 
 f_connectome =  graph_filter(connectome, 0.02)
 
