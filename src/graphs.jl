@@ -1,5 +1,3 @@
-using Connectomes
-
 function create_dict(xroot, key, val)
     children = collect(child_elements(xroot))
     dict = Dict{String, String}()
@@ -17,6 +15,7 @@ function get_node_attributes(graph)
     nID = Vector{Int}(undef, n_nodes)
     region = Vector{String}(undef, n_nodes)
     labels = Vector{String}(undef, n_nodes)
+    hemisphere = Vector{String}(undef, n_nodes)
     for i ∈ 1:n_nodes
         for j ∈ child_elements(graph["node"][i])
             if attribute(j, "key") == "d0"
@@ -29,13 +28,15 @@ function get_node_attributes(graph)
                 nID[i] = parse(Int, LightXML.content(j))
             elseif attribute(j, "key") == "d4"
                 region[i] = LightXML.content(j)
-            elseif attribute(j, "key") == "d6"
+            elseif attribute(j, "key") == "d5"
                 labels[i] = LightXML.content(j)
+            elseif attribute(j, "key") == "d7"
+                hemisphere[i] = LightXML.content(j)
             end
         end
     end
     x, y, z = coords[:,1], coords[:,2], coords[:,3]
-    return DataFrame(ID=nID, Region=region, Label=labels, x=x, y=y, z=z)
+    return DataFrame(ID=nID, Label=labels, Region=region, Hemisphere=hemisphere, x=x, y=y, z=z)
 end
 
 function get_adjacency_matrix(graph)
@@ -69,15 +70,6 @@ function load_graphml(graph_path::String)
     return node_attributes, A
 end
 
-function graph_filter(connectome::Connectome, cutoff::Float64)
-    A = graph_filter(connectome.A, cutoff)
-    Connectome(connectome.parc, A)
-end
-
-graph_filter(A, cutoff) = A .* (A .> cutoff)
-
-max_norm(M) = M ./ maximum(M)
-
 struct Connectome
     parc::DataFrame
     graph::SimpleWeightedGraph{Int64, Float64}
@@ -98,4 +90,11 @@ struct Connectome
     end
 end
 
+function graph_filter(connectome::Connectome, cutoff::Float64)
+    A = graph_filter(connectome.A, cutoff)
+    Connectome(connectome.parc, A)
+end
 
+graph_filter(A, cutoff) = A .* (A .> cutoff)
+
+max_norm(M) = M ./ maximum(M)

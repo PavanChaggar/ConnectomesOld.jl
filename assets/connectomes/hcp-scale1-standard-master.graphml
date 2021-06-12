@@ -841,7 +841,7 @@
       <data key="d4">subcortical</data>
       <data key="d5">brainstem</data>
       <data key="d6">brainstem</data>
-      <data key="d7">right</data>
+      <data key="d7">none</data>
     </node>
     <edge source="1" target="2">
       <data key="d9">1119024.57</data>

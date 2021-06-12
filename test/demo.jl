@@ -11,17 +11,16 @@ assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
 connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
 connectome = Connectome(connectome_path)
 
-plot_connectome(connectome)
+plot_cortex()
+plot_parc(connectome)
 
-A =  graph_filter(Matrix(connectome.A), 0.05)
+f_connectome =  graph_filter(connectome, 0.02)
 
-filtered_connectome = Connectome(connectome.parc, A)
-
-plot_connectome(filtered_connectome)
+plot_connectome(f_connectome)
 
 degree = [connectome.D[i,i] for i in 1:83]
 
-plot_connectome(filtered_connectome; node_size = degree*5)
+plot_connectome(f_connectome; node_size = degree*5)
 
 plot_mesh()
 
@@ -33,7 +32,3 @@ plot_roi(connectome, ["Hippocampus", "brainstem"])
 subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 
 plot_roi(connectome, connectome.parc[subcortex,:Label])
-
-filtered_connectome = graph_filter(connectome, 0.05)
-
-plot_connectome(filtered_connectome)
