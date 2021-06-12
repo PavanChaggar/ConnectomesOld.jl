@@ -33,3 +33,7 @@ plot_roi(connectome, ["Hippocampus", "brainstem"])
 subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 
 plot_roi(connectome, connectome.parc[subcortex,:Label])
+
+filtered_connectome = graph_filter(connectome, 0.05)
+
+plot_connectome(filtered_connectome)

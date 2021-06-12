@@ -1,3 +1,5 @@
+using Connectomes
+
 function create_dict(xroot, key, val)
     children = collect(child_elements(xroot))
     dict = Dict{String, String}()
@@ -65,6 +67,11 @@ function load_graphml(graph_path::String)
     node_attributes = get_node_attributes(ces[end])
     A = get_adjacency_matrix(ces[end])
     return node_attributes, A
+end
+
+function graph_filter(connectome::Connectome, cutoff::Float64)
+    A = graph_filter(connectome.A, cutoff)
+    Connectome(connectome.parc, A)
 end
 
 graph_filter(A, cutoff) = A .* (A .> cutoff)

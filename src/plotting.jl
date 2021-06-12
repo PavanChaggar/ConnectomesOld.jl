@@ -1,12 +1,37 @@
-const fspath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/cortical.obj"
+const fspath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/"
+const cortex = fspath * "cortex/cortex.obj"
+const rh_cortex = fspath * "cortex/rh-cortex.obj"
+const lh_cortex = fspath * "cortex/lh-cortex.obj"
+
 
 function plot_mesh(mesh_path::String=fspath; alpha::Float64=1.0, transparent::Bool=false)
-    fsbrain = load(mesh_path)
+    fsbrain = load(mesh_path*"cortical-bert.obj")
     mesh(fsbrain, color=(:grey, alpha), transparency=transparent, show_axis=false)
 end
 
+function plot_cortex_mni(; alpha::Float64=1.0, transparent::Bool=false)
+    f = Figure(resolution = (700, 700))
+    ax = Axis3(f[1,1], aspect = :data)
+    hidedecorations!(ax)
+    hidespines!(ax)
+
+    mesh!(load(cortex), color=(:grey, alpha), transparency=transparent)
+    f
+end
+
+function plot_cortex(; alpha::Float64=1.0, transparent::Bool=false)
+    f = Figure(resolution = (700, 700))
+    ax = Axis3(f[1,1], aspect = :data)
+    hidedecorations!(ax)
+    hidespines!(ax)
+
+    mesh!(load(lh_cortex), color=(:grey, alpha), transparency=transparent)
+    mesh!(load(rh_cortex), color=(:grey, alpha), transparency=transparent)
+    f
+end
+
 function plot_roi(connectome::Connectome, roi::String)
-    fig = plot_mesh(;alpha=0.1, transparent=true)
+    fig = plot_cortex(;alpha=0.1, transparent=true)
    
     IDs = findall(x -> occursin(roi, x), connectome.parc.Label)  
     for ID in IDs 
@@ -18,7 +43,7 @@ function plot_roi(connectome::Connectome, roi::String)
 end
 
 function plot_roi(connectome::Connectome, rois::Vector{String})
-    fig = plot_mesh(;alpha=0.1, transparent=true)
+    fig = plot_cortex(;alpha=0.1, transparent=true)
     colors = distinguishable_colors(length(rois))
     for (i, roi) in enumerate(rois)
         IDs = findall(x -> occursin(roi, x), connectome.parc.Label)  
@@ -35,7 +60,7 @@ function plot_connectome(connectome::Connectome; node_size=1.0)
 
     coordindex = findall(x->x>0, connectome.A)
     
-    fig = plot_mesh(;alpha=0.1, transparent=true)
+    fig = plot_cortex_mni(;alpha=0.1, transparent=true)
     meshscatter!(x, y, z, markersize=node_size, color=(:blue,0.5))
     for i ∈ 1:length(coordindex)
         j, k = coordindex[i][1], coordindex[i][2]
