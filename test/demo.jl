@@ -14,8 +14,10 @@ plot_cortex(:left,colour=:blue,alpha=0.5)
 
 plot_parc(connectome,:right)
 
+subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 
-plot_roi(connectome, "Hippocampus",:left)
+
+plot_roi(connectome, connectome.parc[subcortex,:Label])
 
 f_connectome =  graph_filter(connectome, 0.02)
 
