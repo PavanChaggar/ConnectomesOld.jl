@@ -1,7 +1,8 @@
-const fspath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/"
-const cortex = fspath * "cortex/cortex.obj"
-const rh_cortex = fspath * "cortex/rh-cortex.obj"
-const lh_cortex = fspath * "cortex/lh-cortex.obj"
+const assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/"
+const mni_cortex = assetpath * "cortex/connectome-cortex.obj"
+const fs_cortex = assetpath * "cortex/fs-cortex.obj"
+const rh_cortex = assetpath * "cortex/rh-cortex.obj"
+const lh_cortex = assetpath * "cortex/lh-cortex.obj"
 
 function set_fig(dimensions::Tuple{Int64, Int64})
     f = Figure(resolution = dimensions)
@@ -12,27 +13,16 @@ function set_fig(dimensions::Tuple{Int64, Int64})
     f
 end
 
-Hemisphere = Dict(zip([:left, :right], [lh_cortex, rh_cortex]))
+Region = Dict(zip([:left, :right, :all], [lh_cortex, rh_cortex, fs_cortex]))
 
-function plot_cortex(region::Symbol; alpha::Float64=1.0, transparent::Bool=false)
+function plot_cortex(region::Symbol=:all; colour::Symbol=:grey, alpha::Float64=1.0, transparent::Bool=false)
     f = set_fig((700,700))
-    plot_cortex!(region)
+    plot_cortex!(region; colour, alpha, transparent)
     f
 end
 
-function plot_cortex(; alpha::Float64=1.0, transparent::Bool=false)
-    f = set_fig((700,700))
-    plot_cortex!()
-    f
-end
-
-function plot_cortex!(region::Symbol; alpha::Float64=1.0, transparent::Bool=false)
-    mesh!(load(Hemisphere[region]), color=(:grey, alpha), transparency=transparent)
-end
-
-function plot_cortex!(; alpha::Float64=1.0, transparent::Bool=false)
-    plot_cortex!(:left;alpha, transparent)
-    plot_cortex!(:right;alpha, transparent)
+function plot_cortex!(region::Symbol; colour::Symbol, alpha::Float64, transparent::Bool)
+    mesh!(load(Region[region]), color=(colour, alpha), transparency=transparent)
 end
 
 function get_hemisphere(parc, hemisphere::Symbol)
@@ -49,7 +39,7 @@ function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
 
     colors = distinguishable_colors(length(h_ids))
     for (i, j) in enumerate(h_ids)
-        roi = load(fspath * "DKT/roi_$(j).obj")
+        roi = load(assetpath * "DKT/roi_$(j).obj")
         mesh!(roi, color=(colors[i], alpha), transparency=false, show_axis=false)
     end
 end
@@ -68,7 +58,7 @@ function plot_parc(connectome::Connectome; alpha=1.0)
 end
 
 function plot_roi!(roi::Int, colour, roi_alpha)
-    meshpath = fspath * "DKT/roi_$(roi).obj"
+    meshpath = assetpath * "DKT/roi_$(roi).obj"
     mesh!(load(meshpath), color=(colour, roi_alpha), transparency=false)
 end
 
@@ -128,7 +118,7 @@ function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbo
 end
 
 
-function plot_mesh(mesh_path::String=fspath; alpha::Float64=1.0, transparent::Bool=false)
+function plot_mesh(mesh_path::String=assetpath; alpha::Float64=1.0, transparent::Bool=false)
     fsbrain = load(mesh_path*"cortical-bert.obj")
     mesh(fsbrain, color=(:grey, alpha), transparency=transparent, show_axis=false)
 end
