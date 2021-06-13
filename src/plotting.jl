@@ -65,7 +65,7 @@ end
 function plot_roi(connectome::Connectome, roi::String; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
 
     f = set_fig((700,700))
-    plot_cortex!(;alpha=cortex_alpha, transparent=transparent)
+    plot_cortex!(:all; :grey, cortex_alpha, transparent)
     
     ID = get_roi(connectome.parc, roi)
     
@@ -78,8 +78,8 @@ end
 function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
 
     f = set_fig((700,700))
-    plot_cortex!(hemisphere; alpha=cortex_alpha, transparent=transparent)
-    
+    plot_cortex!(hemisphere; :grey, cortex_alpha, transparent)
+    plot_cortex!   
     ID = get_roi(connectome.parc, roi)
     h_ID = get_hemisphere(connectome.parc[ID,:], hemisphere)
     for j in h_ID
