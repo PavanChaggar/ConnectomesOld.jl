@@ -9,7 +9,7 @@ assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
 connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
 connectome = Connectome(connectome_path)
 
-plot_cortex()
+plot_cortex(:left,colour=:blue,alpha=0.5)
 
 
 plot_parc(connectome,:right)
