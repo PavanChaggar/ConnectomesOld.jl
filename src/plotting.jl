@@ -62,7 +62,7 @@ function plot_roi!(roi::Int, colour, roi_alpha)
     mesh!(load(meshpath), color=(colour, roi_alpha), transparency=false)
 end
 
-function plot_roi(connectome::Connectome, roi::String; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+function plot_roi(connectome::Connectome, roi::String; cortex_alpha=0.05, colour=:blue, roi_alpha=1.0, transparent=true)
 
     f = set_fig((700,700))
     plot_cortex!(:all; alpha=cortex_alpha, transparent=transparent)
@@ -75,7 +75,7 @@ function plot_roi(connectome::Connectome, roi::String; cortex_alpha=0.05, colour
     f
 end
 
-function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; cortex_alpha=0.05, colour=:blue, roi_alpha=1.0, transparent=true)
 
     f = set_fig((700,700))
     plot_cortex!(hemisphere; alpha=cortex_alpha, transparent=transparent)
@@ -88,30 +88,30 @@ function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; corte
     f
 end
 
-function plot_roi(connectome::Connectome, roi::Vector{String}; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+function plot_roi(connectome::Connectome, roi::Vector{String}; cortex_alpha=0.05, roi_alpha=1.0, transparent=true)
 
     f = set_fig((700,700))
     plot_cortex!(:all; alpha=cortex_alpha, transparent=transparent)
-    
-    for i in roi
-        ID = get_roi(connectome.parc, i)
-        for j in ID
-            plot_roi!(j, colour, roi_alpha)
+    colour = distinguishable_colors(length(roi))
+    for (i, j) in enumerate(roi)
+        ID = get_roi(connectome.parc, j)
+        for k in ID
+            plot_roi!(k, colour[i], roi_alpha)
         end
     end
     f
 end
 
-function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbol; cortex_alpha=0.05, colour=:blue, roi_alpha=0.5, transparent=true)
+function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbol; cortex_alpha=0.05, roi_alpha=1.0, transparent=true)
 
     f = set_fig((700,700))
     plot_cortex!(hemisphere; alpha=cortex_alpha, transparent=transparent)
-    
-    for i in roi
-        ID = get_roi(connectome.parc, i)
+    colour = distinguishable_colors(length(roi))
+    for (i, j) in enumerate(roi)
+        ID = get_roi(connectome.parc, j)
         h_ID = get_hemisphere(connectome.parc[ID,:], hemisphere)
-        for j in h_ID
-            plot_roi!(j, colour, roi_alpha)
+        for k in h_ID
+            plot_roi!(k, colour[i], roi_alpha)
         end
     end
     f

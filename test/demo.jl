@@ -9,13 +9,12 @@ assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
 connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
 connectome = Connectome(connectome_path)
 
-plot_cortex(:left,colour=:blue,alpha=0.5)
+plot_cortex(:left)
 
-
-plot_parc(connectome,:right)
+plot_parc(connectome, :left)
 
 subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
-
+connectome.parc[subcortex,:Label]
 
 plot_roi(connectome, connectome.parc[subcortex,:Label])
 
