@@ -62,6 +62,7 @@ function plot_roi!(roi::Int, colour, roi_alpha)
     mesh!(load(meshpath), color=(colour, roi_alpha), transparency=false)
 end
 
+
 function plot_roi(connectome::Connectome, roi::String; cortex_alpha=0.05, colour=:blue, roi_alpha=1.0, transparent=true)
 
     f = set_fig((700,700))
@@ -144,18 +145,17 @@ function plot_parc_old(connectome::Connectome; alpha=1.0)
 end
 
 function plot_roi_x(connectome::Connectome, rois::String, color::RGBA)
-    meshpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/cortical.obj"
 
     f = Figure(resolution = (700, 700))
     ax = Axis3(f[1,1], aspect = :data, azimuth = 0.5pi, elevation=-0.03pi)
     hidedecorations!(ax)
     hidespines!(ax)
-    mesh!(load(meshpath), color=(:grey, 0.05), transparency=true, show_axis=false)
+    mesh!(load(fs_cortex), color=(:grey, 0.05), transparency=true, show_axis=false)
     
     IDs = findall(x -> occursin(rois, x), connectome.parc.Label)  
 
     for ID in IDs
-        roipath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/DKT/roi_$(ID).obj"
+        roipath = assetpath * "DKT/roi_$(ID).obj"
         mesh!(load(roipath), color=(color), transparency=false, show_axis=false)
     end
     f
@@ -165,15 +165,15 @@ function plot_roi_x(connectome::Connectome, rois::Vector{String}, color::RGBA)
     meshpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/cortical.obj"
 
     f = Figure(resolution = (700, 700))
-    ax = Axis3(f[1,1], aspect = :data, azimuth = 0.5pi, elevation=-0.03pi)
+    ax = Axis3(f[1,1], aspect = :data, azimuth = 1.0pi, elevation=-0.00pi)
     hidedecorations!(ax)
     hidespines!(ax)
-    mesh!(load(meshpath), color=(:grey, 0.05), transparency=true, show_axis=false)
+    mesh!(load(fs_cortex), color=(:grey, 0.05), transparency=true, show_axis=false)
     
     for roi in rois
-        roi = findall(x -> occursin(roi, x), connectome.parc.Label)
+        roi = findall(x -> x == roi, connectome.parc.Label)
         for roi_h in roi  
-            roipath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/DKT/roi_$(roi_h).obj"
+            roipath = assetpath * "DKT/roi_$(roi_h).obj"
             mesh!(load(roipath), color=(color), transparency=false, show_axis=false)
         end
     end

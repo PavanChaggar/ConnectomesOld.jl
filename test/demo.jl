@@ -36,3 +36,11 @@ plot_roi(connectome, ["Hippocampus", "brainstem"])
 subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 
 plot_roi(connectome, connectome.parc[subcortex,:Label])
+
+fig = plot_roi_x(connectome, ["rostralanteriorcingulate", "caudalanteriorcingulate"], colorant"rgba(20, 100, 180 ,0.7)")
+path = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/" * "DKT/roi_24.obj"
+mesh!(load(path),color=(colorant"rgba(180,0,10,0.7)"), transparency=false, show_axis=false)
+save("braak4.png", fig)
+
+
+findall(x -> x == "lingual", connectome.parc.Label)
