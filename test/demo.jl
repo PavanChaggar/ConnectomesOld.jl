@@ -25,21 +25,12 @@ degree = [connectome.D[i,i] for i in 1:83]
 
 plot_connectome(f_connectome; node_size = degree*5)
 
-plot_mesh()
+f = Figure(resolution = (1000,1000))
+ax = Axis3(f[1,1], aspect = :data)
+hidedecorations!(ax)
+hidespines!(ax)
 
-plot_parc(connectome; alpha=1.0)
+plot_cortex!(:all;alpha=0.1, transparent=true)
+plot_roi!(81, :blue, 0.8)
 
-plot_roi(connectome, "entorhinal")
-plot_roi(connectome, ["Hippocampus", "brainstem"])
-
-subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
-
-plot_roi(connectome, connectome.parc[subcortex,:Label])
-
-fig = plot_roi_x(connectome, ["rostralanteriorcingulate", "caudalanteriorcingulate"], colorant"rgba(20, 100, 180 ,0.7)")
-path = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/" * "DKT/roi_24.obj"
-mesh!(load(path),color=(colorant"rgba(180,0,10,0.7)"), transparency=false, show_axis=false)
-save("braak4.png", fig)
-
-
-findall(x -> x == "lingual", connectome.parc.Label)
+FS2Connectome[2002]

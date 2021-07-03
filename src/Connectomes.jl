@@ -10,13 +10,17 @@ using DelimitedFiles
 using FileIO
 using LinearAlgebra
 using Colors
+using Serialization
 
 include("graphs.jl")
 export Connectome
 export graph_filter
+export Connectome2FS
+export FS2Connectome
 
 include("plotting.jl")
 export plot_cortex
+export plot_cortex!
 export plot_mesh
 export testplot
 export plot_roi

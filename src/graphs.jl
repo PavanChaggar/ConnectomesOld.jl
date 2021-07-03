@@ -98,3 +98,8 @@ end
 graph_filter(A, cutoff) = A .* (A .> cutoff)
 
 max_norm(M) = M ./ maximum(M)
+
+const assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
+
+const Connectome2FS = deserialize(assetpath * "dicts/Connectome2FS.jls")
+const FS2Connectome = deserialize(assetpath * "/dicts/FS2Connectome.jls")
