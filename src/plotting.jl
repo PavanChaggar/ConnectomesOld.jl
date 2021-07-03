@@ -13,7 +13,7 @@ function set_fig(dimensions::Tuple{Int64, Int64})
     f
 end
 
-Region = Dict(zip([:left, :right, :all], [lh_cortex, rh_cortex, fs_cortex]))
+Region = Dict(zip([:left, :right, :all, :connectome], [lh_cortex, rh_cortex, fs_cortex, mni_cortex]))
 
 function plot_cortex!(region::Symbol=:all; colour::Symbol=:grey, alpha::Float64=1.0, transparent::Bool=true)
     mesh!(load(Region[region]), color=(colour, alpha), transparency=transparent)
@@ -123,7 +123,7 @@ function plot_connectome(connectome::Connectome; node_size=1.0)
 
     coordindex = findall(x->x>0, connectome.A)
     
-    fig = plot_cortex_mni(;alpha=0.1, transparent=true)
+    fig = plot_cortex(:connectome;alpha=0.1, transparent=true)
     meshscatter!(x, y, z, markersize=node_size, color=(:blue,0.5))
     for i ∈ 1:length(coordindex)
         j, k = coordindex[i][1], coordindex[i][2]
