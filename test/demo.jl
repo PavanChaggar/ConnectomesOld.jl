@@ -24,13 +24,3 @@ plot_connectome(f_connectome)
 degree = [connectome.D[i,i] for i in 1:83]
 
 plot_connectome(f_connectome; node_size = degree*5)
-
-f = Figure(resolution = (1000,1000))
-ax = Axis3(f[1,1], aspect = :data)
-hidedecorations!(ax)
-hidespines!(ax)
-
-plot_cortex!(:all;alpha=0.1, transparent=true)
-plot_roi!(81, :blue, 0.8)
-
-FS2Connectome[2002]
