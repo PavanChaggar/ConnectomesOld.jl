@@ -3,6 +3,11 @@ const mni_cortex = assetpath * "cortex/connectome-cortex.obj"
 const fs_cortex = assetpath * "cortex/fs-cortex.obj"
 const rh_cortex = assetpath * "cortex/rh-cortex.obj"
 const lh_cortex = assetpath * "cortex/lh-cortex.obj"
+const fs_cortex_mesh = load(fs_cortex)
+const lh_cortex_mesh = load(lh_cortex)
+const rh_cortex_mesh = load(rh_cortex)
+const mni_cortex_mesh = load(mni_cortex)
+
 
 function set_fig(dimensions::Tuple{Int64, Int64}=(1600,900))
     f = Figure(resolution = dimensions)
@@ -21,10 +26,10 @@ function get_roi(parc::DataFrame, roi::String)
     findall(x -> occursin(roi, x), parc.Label)  
 end
 
-Region = Dict(zip([:left, :right, :all, :connectome], [lh_cortex, rh_cortex, fs_cortex, mni_cortex]))
+Region = Dict(zip([:left, :right, :all, :connectome], [lh_cortex_mesh, rh_cortex_mesh, fs_cortex_mesh, mni_cortex_mesh]))
 
 function plot_cortex!(region::Symbol=:all; colour=(:grey,0.1), transparent::Bool=true)
-    mesh!(load(Region[region]), color=colour, transparency=transparent)
+    mesh!(Region[region], color=colour, transparency=transparent)
 end
 
 function plot_cortex(region::Symbol=:all; colour=(:grey,1.0), transparent::Bool=false)
