@@ -1,13 +1,9 @@
-function create_dict(xroot, key, val)
-    children = collect(child_elements(xroot))
-    dict = Dict{String, String}()
-    for i ∈ children[1:end-1]
-        k = attribute(i, key)
-        v = attribute(i, val)
-        dict[k] = v
-    end
-    return dict
-end
+const dictpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/dicts"
+
+const Connectome2FS = deserialize(dictpath * "/Connectome2FS.jls")
+const FS2Connectome = deserialize(dictpath * "/FS2Connectome.jls")
+
+
 
 function get_node_attributes(graph)
     n_nodes = length(graph["node"])
@@ -60,6 +56,34 @@ function get_adjacency_matrix(graph)
     return SimpleWeightedGraph(Anorm + transpose(Anorm))
 end
 
+function read_cmtk_parcellation(graph_path)
+    xdoc = parse_file(graph_path)
+    xroot = root(xdoc)
+    ces = collect(child_elements(xroot))
+    graph = ces[end]
+    
+    n_nodes = length(graph["node"])
+    nID = Vector{Int}(undef, n_nodes)
+    region = Vector{String}(undef, n_nodes)
+    labels = Vector{String}(undef, n_nodes)
+    hemisphere = Vector{String}(undef, n_nodes)
+
+    for i ∈ 1:n_nodes
+        for j ∈ child_elements(graph["node"][i])
+            if attribute(j, "key") == "d0"
+                region[i] = LightXML.content(j)
+            elseif attribute(j, "key") == "d1"
+                labels[i] = LightXML.content(j)
+            elseif attribute(j, "key") == "d2"
+                hemisphere[i] = LightXML.content(j)
+            elseif attribute(j, "key") == "d3"
+                nID[i] = parse(Int, LightXML.content(j))
+            end
+        end
+    end
+    return DataFrame(ID=nID, Label=labels, Region=region, Hemisphere=hemisphere)
+end
+
 function load_graphml(graph_path::String)
     xdoc = parse_file(graph_path)
     xroot = root(xdoc)
@@ -88,8 +112,16 @@ struct Connectome
         Graph = SimpleWeightedGraph(A)
         new(parc, Graph, adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
     end
+
+    function Connectome(parc, coords, A)
+        for (i, j) in enumerate([:x, :y, :z])
+            parc[!, j] = coords[:,i]
+        end
+        Connectome(parc, A)
+    end
 end
 
+# convenience functions for processing graphs
 function graph_filter(connectome::Connectome, cutoff::Float64)
     A = graph_filter(connectome.A, cutoff)
     Connectome(connectome.parc, A)
@@ -98,8 +130,3 @@ end
 graph_filter(A, cutoff) = A .* (A .> cutoff)
 
 max_norm(M) = M ./ maximum(M)
-
-const dictpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/dicts"
-
-const Connectome2FS = deserialize(dictpath * "/Connectome2FS.jls")
-const FS2Connectome = deserialize(dictpath * "/FS2Connectome.jls")

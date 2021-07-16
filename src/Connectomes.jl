@@ -17,6 +17,7 @@ export Connectome
 export graph_filter
 export Connectome2FS
 export FS2Connectome
+export read_cmtk_parcellation
 
 include("plotting.jl")
 export plot_cortex

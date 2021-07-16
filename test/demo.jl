@@ -3,6 +3,7 @@ using Connectomes
 using GLMakie
 using FileIO
 using Colors
+using LightXML
 
 
 assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
