@@ -10,6 +10,7 @@ using DelimitedFiles
 using FileIO
 using LinearAlgebra
 using Colors
+using ColorSchemes
 using Serialization
 
 include("graphs.jl")
@@ -29,5 +30,7 @@ export plot_roi!
 export plot_connectome
 export plot_parc
 export plot_vertex
+export plot_vertex!
+export plot_edges!
 
 end

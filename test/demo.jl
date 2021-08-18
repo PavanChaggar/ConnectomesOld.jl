@@ -33,3 +33,6 @@ plot_cortex(:all;colour=(:grey,0.05), transparent=true)
 plot_roi!(81, (:blue, 0.5))
 
 plot_vertex(connectome, node_size = d * 10)
+using ColorSchemes
+get(ColorSchemes.viridis, 0.5)
+

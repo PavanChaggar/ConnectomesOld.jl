@@ -73,7 +73,6 @@ function plot_roi!(roi::Vector{Int64}, colour)
     end
 end
 
-
 function plot_roi(connectome::Connectome, roi::String; cortexcolour=(:grey,0.05), colour=(:blue,0.1), transparent=true)
 
     f = set_fig()
@@ -142,18 +141,23 @@ function plot_vertex(connectome::Connectome; node_size=1.0, colour=(:blue,0.5))
     f
 end
 
-function plot_connectome(connectome::Connectome; node_size=1.0, node_colour=(:blue, 0.5))
+function plot_edges!(connectome::Connectome, colour)
     x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
+    coordindex = findall(x->x>0, LowerTriangular(connectome.A))
+    
+    for i ∈ 1:length(coordindex)
+        j, k = coordindex[i][1], coordindex[i][2]
+        weight = connectome.A[j, k]
+        lines!(x[[j,k]], y[[j,k]], z[[j,k]],
+               color=get(colour, weight), #matter
+               linewidth=clamp(50*weight,2,50))
+    end
+end
+
+function plot_connectome(connectome::Connectome; node_size=1.0, node_colour=(:blue, 0.5), edge_colour)
     f = set_fig()
     plot_cortex!(:connectome)
     plot_vertex!(connectome, node_size, node_colour)
-
-    coordindex = findall(x->x>0, connectome.A)
-
-    for i ∈ 1:length(coordindex)
-        j, k = coordindex[i][1], coordindex[i][2]
-        lines!(x[[j,k]], y[[j,k]], z[[j,k]],color=:black)
-    end
-
+    plot_edges!(connectome, edge_colour)
     f
 end

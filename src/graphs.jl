@@ -3,8 +3,6 @@ const dictpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/dicts"
 const Connectome2FS = deserialize(dictpath * "/Connectome2FS.jls")
 const FS2Connectome = deserialize(dictpath * "/FS2Connectome.jls")
 
-
-
 function get_node_attributes(graph)
     n_nodes = length(graph["node"])
     coords = Array{Float64}(undef, n_nodes, 3)
@@ -51,9 +49,8 @@ function get_adjacency_matrix(graph)
         end
         A[i,j] = n / l^2
     end
-    Anorm = max_norm(A)
 
-    return SimpleWeightedGraph(Anorm + transpose(Anorm))
+    return SimpleWeightedGraph((A + transpose(A))*0.5)
 end
 
 function read_cmtk_parcellation(graph_path)
@@ -100,9 +97,13 @@ struct Connectome
     A::SparseMatrixCSC{Float64, Int64}
     D::SparseMatrixCSC{Float64, Int64}
     L::SparseMatrixCSC{Float64, Int64}
-    function Connectome(graph_path::String)
+    function Connectome(graph_path::String; norm=true)
         parc, Graph = load_graphml(graph_path)
-        A = adjacency_matrix(Graph)
+        if norm
+            A = max_norm(adjacency_matrix(Graph))
+        else
+            A = adjacency_matrix(Graph)
+        end
         D = degree_matrix(Graph)
         L = laplacian_matrix(Graph)
         new(parc, Graph, A, D, L)
