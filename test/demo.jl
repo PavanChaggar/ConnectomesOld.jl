@@ -14,7 +14,7 @@ plot_cortex()
 
 plot_cortex(:connectome)
 
-plot_parc(connectome)
+plot_parc(connectome, :left; view=:left)
 
 subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 

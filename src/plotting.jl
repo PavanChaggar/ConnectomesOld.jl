@@ -9,9 +9,9 @@ const rh_cortex_mesh = load(rh_cortex)
 const mni_cortex_mesh = load(mni_cortex)
 
 
-function set_fig(dimensions::Tuple{Int64, Int64}=(1600,900))
+function set_fig(;dimensions::Tuple{Int64, Int64}=(1600,900), view=:front)
     f = Figure(resolution = dimensions)
-    ax = Axis3(f[1,1], aspect = :data)
+    ax = Axis3(f[1,1], aspect = :data, azimuth = View[view]pi, elevation=0.0pi)
     hidedecorations!(ax)
     hidespines!(ax)
     f
@@ -27,13 +27,14 @@ function get_roi(parc::DataFrame, roi::String)
 end
 
 Region = Dict(zip([:left, :right, :all, :connectome], [lh_cortex_mesh, rh_cortex_mesh, fs_cortex_mesh, mni_cortex_mesh]))
+View = Dict(zip([:right, :front, :left, :back], [0.0, 0.5, 1.0, 1.5]))
 
 function plot_cortex!(region::Symbol=:all; colour=(:grey,0.1), transparent::Bool=true)
     mesh!(Region[region], color=colour, transparency=transparent)
 end
 
-function plot_cortex(region::Symbol=:all; colour=(:grey,1.0), transparent::Bool=false)
-    f = set_fig()
+function plot_cortex(region::Symbol=:all; colour=(:grey,1.0), transparent::Bool=false, view=:left)
+    f = set_fig(view=view)
     plot_cortex!(region; colour, transparent)
     f
 end
@@ -48,16 +49,16 @@ function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
     end
 end
 
-function plot_parc(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
-    f = set_fig()
-    plot_parc!(connectome, hemisphere)
+function plot_parc(connectome::Connectome, hemisphere::Symbol; alpha=1.0, view=:left)
+    f = set_fig(view=view)
+    plot_parc!(connectome, hemisphere; alpha)
     f
 end
 
 function plot_parc(connectome::Connectome; alpha=1.0)
     f = set_fig()
-    plot_parc!(connectome, :left;alpha)
-    plot_parc!(connectome, :right;alpha)
+    plot_parc!(connectome, :left; alpha)
+    plot_parc!(connectome, :right; alpha)
     f
 end
 
