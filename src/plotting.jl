@@ -29,7 +29,7 @@ end
 Region = Dict(zip([:left, :right, :all, :connectome], [lh_cortex_mesh, rh_cortex_mesh, fs_cortex_mesh, mni_cortex_mesh]))
 View = Dict(zip([:right, :front, :left, :back], [0.0, 0.5, 1.0, 1.5]))
 
-function plot_cortex!(region::Symbol=:all; colour=(:grey,0.1), transparent::Bool=true)
+function plot_cortex!(region::Symbol=:all; colour=(:grey,0.05), transparent::Bool=true)
     mesh!(Region[region], color=colour, transparency=transparent)
 end
 
@@ -129,55 +129,31 @@ function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbo
     f
 end
 
-function plot_connectome(connectome::Connectome; node_size=1.0)
+function plot_vertex!(connectome::Connectome, node_size, colour)
     x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
+    meshscatter!(x, y, z, markersize=node_size, color=colour)
+
+end
+
+function plot_vertex(connectome::Connectome; node_size=1.0, colour=(:blue,0.5))
+    f = set_fig()
+    plot_cortex!(:connectome)
+    plot_vertex!(connectome, node_size, colour)
+    f
+end
+
+function plot_connectome(connectome::Connectome; node_size=1.0, node_colour=(:blue, 0.5))
+    x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
+    f = set_fig()
+    plot_cortex!(:connectome)
+    plot_vertex!(connectome, node_size, node_colour)
 
     coordindex = findall(x->x>0, connectome.A)
 
-    f = set_fig()
-    plot_cortex!(:connectome)
-    meshscatter!(x, y, z, markersize=node_size, color=(:blue,0.5))
     for i ∈ 1:length(coordindex)
         j, k = coordindex[i][1], coordindex[i][2]
         lines!(x[[j,k]], y[[j,k]], z[[j,k]],color=:black)
     end
 
-    f
-end
-
-
-function plot_roi_x(connectome::Connectome, rois::String, color::RGBA)
-
-    f = Figure(resolution = (700, 700))
-    ax = Axis3(f[1,1], aspect = :data, azimuth = 0.5pi, elevation=-0.03pi)
-    hidedecorations!(ax)
-    hidespines!(ax)
-    mesh!(load(fs_cortex), color=(:grey, 0.05), transparency=true, show_axis=false)
-    
-    IDs = findall(x -> occursin(rois, x), connectome.parc.Label)  
-
-    for ID in IDs
-        roipath = assetpath * "DKT/roi_$(ID).obj"
-        mesh!(load(roipath), color=(color), transparency=false, show_axis=false)
-    end
-    f
-end
-
-function plot_roi_x(connectome::Connectome, rois::Vector{String}, color::RGBA)
-    meshpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/meshes/cortical.obj"
-
-    f = Figure(resolution = (700, 700))
-    ax = Axis3(f[1,1], aspect = :data, azimuth = 1.0pi, elevation=-0.00pi)
-    hidedecorations!(ax)
-    hidespines!(ax)
-    mesh!(load(fs_cortex), color=(:grey, 0.05), transparency=true, show_axis=false)
-    
-    for roi in rois
-        roi = findall(x -> x == roi, connectome.parc.Label)
-        for roi_h in roi  
-            roipath = assetpath * "DKT/roi_$(roi_h).obj"
-            mesh!(load(roipath), color=(color), transparency=false, show_axis=false)
-        end
-    end
     f
 end

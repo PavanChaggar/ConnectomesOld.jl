@@ -28,6 +28,6 @@ export plot_roi
 export plot_roi!
 export plot_connectome
 export plot_parc
-export plot_roi_x
+export plot_vertex
 
 end

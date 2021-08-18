@@ -20,13 +20,16 @@ subcortex = findall( x -> occursin("subcortical",x), connectome.parc.Region)
 
 plot_roi(connectome, connectome.parc[subcortex,:Label])
 
-f_connectome =  graph_filter(connectome, 0.02)
+f_connectome =  graph_filter(connectome, 0.01)
 
 plot_connectome(f_connectome)
 
 degree = [connectome.D[i,i] for i in 1:83]
+d = degree ./ maximum(degree)
 
-plot_connectome(f_connectome; node_size = degree*5)
+plot_connectome(f_connectome; node_size = d*5)
 
 plot_cortex(:all;colour=(:grey,0.05), transparent=true)
 plot_roi!(81, (:blue, 0.5))
+
+plot_vertex(connectome, node_size = d * 10)

@@ -51,9 +51,9 @@ function get_adjacency_matrix(graph)
         end
         A[i,j] = n / l^2
     end
-    #Anorm = max_norm(A)
+    Anorm = max_norm(A)
 
-    return SimpleWeightedGraph(A + transpose(A))
+    return SimpleWeightedGraph(Anorm + transpose(Anorm))
 end
 
 function read_cmtk_parcellation(graph_path)
