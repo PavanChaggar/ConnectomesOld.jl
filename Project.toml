@@ -22,6 +22,7 @@ SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [compat]
 CSV = "0.8"
+ColorSchemes = "3"
 Colors = "0.12"
 DataFrames = "1.1"
 FileIO = "1.9"
