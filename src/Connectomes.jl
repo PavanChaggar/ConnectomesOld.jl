@@ -10,7 +10,6 @@ using DelimitedFiles
 using FileIO
 using LinearAlgebra
 using Colors
-using ColorSchemes
 using Serialization
 
 include("graphs.jl")

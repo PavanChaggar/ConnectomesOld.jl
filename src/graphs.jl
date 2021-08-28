@@ -100,10 +100,9 @@ struct Connectome
     function Connectome(graph_path::String; norm=true)
         parc, Graph = load_graphml(graph_path)
         if norm
-            A = max_norm(adjacency_matrix(Graph))
-        else
-            A = adjacency_matrix(Graph)
+            Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
         end
+        A = adjacency_matrix(Graph)
         D = degree_matrix(Graph)
         L = laplacian_matrix(Graph)
         new(parc, Graph, A, D, L)

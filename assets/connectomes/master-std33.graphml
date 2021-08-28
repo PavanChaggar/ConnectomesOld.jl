@@ -14,9 +14,9 @@
   <key attr.name="dn_position_x" attr.type="double" for="node" id="d0" />
   <graph edgedefault="undirected">
     <node id="1">
-      <data key="d0">34.0419230769</data>
-      <data key="d1">82.1757692308</data>
-      <data key="d2">31.7769230769</data>
+      <data key="d0">25.00574653668548</data>
+      <data key="d1">33.4624935864546</data>
+      <data key="d2">-16.65079527963058</data>
       <data key="d3">1</data>
       <data key="d4">cortical</data>
       <data key="d5">lateralorbitofrontal</data>
@@ -24,9 +24,9 @@
       <data key="d7">right</data>
     </node>
     <node id="2">
-      <data key="d0">24.2897603486</data>
-      <data key="d1">88.7309368192</data>
-      <data key="d2">36.0174291939</data>
+      <data key="d0">43.78909196402668</data>
+      <data key="d1">41.465912387583415</data>
+      <data key="d2">-11.845082680591815</data>
       <data key="d3">2</data>
       <data key="d4">cortical</data>
       <data key="d5">parsorbitalis</data>
@@ -34,19 +34,19 @@
       <data key="d7">right</data>
     </node>
     <node id="3">
-      <data key="d0">39.9471947195</data>
-      <data key="d1">100.095709571</data>
-      <data key="d2">36.7425742574</data>
-      <data key="d5">frontalpole</data>
+      <data key="d0">9.595789473684206</data>
+      <data key="d1">67.34421052631578</data>
+      <data key="d2">-8.942105263157899</data>
       <data key="d3">3</data>
-      <data key="d6">rh.frontalpole</data>
       <data key="d4">cortical</data>
+      <data key="d5">frontalpole</data>
+      <data key="d6">rh.frontalpole</data>
       <data key="d7">right</data>
     </node>
     <node id="4">
-      <data key="d0">42.5898520085</data>
-      <data key="d1">84.8689217759</data>
-      <data key="d2">32.4878435518</data>
+      <data key="d0">5.798997493734333</data>
+      <data key="d1">40.73834586466165</data>
+      <data key="d2">-15.716624895572266</data>
       <data key="d3">4</data>
       <data key="d4">cortical</data>
       <data key="d5">medialorbitofrontal</data>
@@ -54,9 +54,9 @@
       <data key="d7">right</data>
     </node>
     <node id="5">
-      <data key="d0">21.4954682779</data>
-      <data key="d1">79.7679758308</data>
-      <data key="d2">39.7220543807</data>
+      <data key="d0">48.399288396916376</data>
+      <data key="d1">31.855505040521848</data>
+      <data key="d2">5.604269618501675</data>
       <data key="d3">5</data>
       <data key="d4">cortical</data>
       <data key="d5">parstriangularis</data>
@@ -64,9 +64,9 @@
       <data key="d7">right</data>
     </node>
     <node id="6">
-      <data key="d0">20.955539873</data>
-      <data key="d1">68.2582921665</data>
-      <data key="d2">42.5038814397</data>
+      <data key="d0">48.18627661862766</data>
+      <data key="d1">14.44719294471929</data>
+      <data key="d2">13.449559044955905</data>
       <data key="d3">6</data>
       <data key="d4">cortical</data>
       <data key="d5">parsopercularis</data>
@@ -74,9 +74,9 @@
       <data key="d7">right</data>
     </node>
     <node id="7">
-      <data key="d0">28.1136461472</data>
-      <data key="d1">85.0258286698</data>
-      <data key="d2">49.0718897977</data>
+      <data key="d0">33.75038644300682</data>
+      <data key="d1">47.598900784336166</data>
+      <data key="d2">16.78244689986832</data>
       <data key="d3">7</data>
       <data key="d4">cortical</data>
       <data key="d5">rostralmiddlefrontal</data>
@@ -84,9 +84,9 @@
       <data key="d7">right</data>
     </node>
     <node id="8">
-      <data key="d0">38.9716407833</data>
-      <data key="d1">72.297209093</data>
-      <data key="d2">58.6162502813</data>
+      <data key="d0">10.978598253472697</data>
+      <data key="d1">33.18741233428352</data>
+      <data key="d2">39.72331568707298</data>
       <data key="d3">8</data>
       <data key="d4">cortical</data>
       <data key="d5">superiorfrontal</data>
@@ -94,9 +94,9 @@
       <data key="d7">right</data>
     </node>
     <node id="9">
-      <data key="d0">27.3472803347</data>
-      <data key="d1">62.9124825662</data>
-      <data key="d2">59.5923988842</data>
+      <data key="d0">37.09014598540145</data>
+      <data key="d1">10.222810218978111</data>
+      <data key="d2">46.98868613138686</data>
       <data key="d3">9</data>
       <data key="d4">cortical</data>
       <data key="d5">caudalmiddlefrontal</data>
@@ -104,9 +104,9 @@
       <data key="d7">right</data>
     </node>
     <node id="10">
-      <data key="d0">24.5545607163</data>
-      <data key="d1">53.6901697445</data>
-      <data key="d2">54.443014363</data>
+      <data key="d0">43.13576514190967</data>
+      <data key="d1">-5.411489320198967</data>
+      <data key="d2">39.884131473715016</data>
       <data key="d3">10</data>
       <data key="d4">cortical</data>
       <data key="d5">precentral</data>
@@ -114,9 +114,9 @@
       <data key="d7">right</data>
     </node>
     <node id="11">
-      <data key="d0">40.9532037437</data>
-      <data key="d1">41.3326133909</data>
-      <data key="d2">56.8689704824</data>
+      <data key="d0">7.869121140142511</data>
+      <data key="d1">-25.74798099762471</data>
+      <data key="d2">55.49881235154393</data>
       <data key="d3">11</data>
       <data key="d4">cortical</data>
       <data key="d5">paracentral</data>
@@ -124,9 +124,9 @@
       <data key="d7">right</data>
     </node>
     <node id="12">
-      <data key="d0">41.7967377666</data>
-      <data key="d1">80.4579673777</data>
-      <data key="d2">41.7352572146</data>
+      <data key="d0">6.376789751318768</data>
+      <data key="d1">38.78183873398643</data>
+      <data key="d2">2.540693293142425</data>
       <data key="d3">12</data>
       <data key="d4">cortical</data>
       <data key="d5">rostralanteriorcingulate</data>
@@ -134,9 +134,9 @@
       <data key="d7">right</data>
     </node>
     <node id="13">
-      <data key="d0">42.0170854271</data>
-      <data key="d1">69.383919598</data>
-      <data key="d2">50.159798995</data>
+      <data key="d0">5.578373847443416</data>
+      <data key="d1">22.59010896898576</data>
+      <data key="d2">26.666806370494555</data>
       <data key="d3">13</data>
       <data key="d4">cortical</data>
       <data key="d5">caudalanteriorcingulate</data>
@@ -144,9 +144,9 @@
       <data key="d7">right</data>
     </node>
     <node id="14">
-      <data key="d0">41.9476439791</data>
-      <data key="d1">48.5968586387</data>
-      <data key="d2">48.627399651</data>
+      <data key="d0">5.761144744083651</data>
+      <data key="d1">-16.959823885525594</data>
+      <data key="d2">38.97660979636764</data>
       <data key="d3">14</data>
       <data key="d4">cortical</data>
       <data key="d5">posteriorcingulate</data>
@@ -154,9 +154,9 @@
       <data key="d7">right</data>
     </node>
     <node id="15">
-      <data key="d0">41.7765363128</data>
-      <data key="d1">38.1731843575</data>
-      <data key="d2">39.0167597765</data>
+      <data key="d0">7.733489775393892</data>
+      <data key="d1">-47.35601743211532</data>
+      <data key="d2">20.763325511230306</data>
       <data key="d3">15</data>
       <data key="d4">cortical</data>
       <data key="d5">isthmuscingulate</data>
@@ -164,9 +164,9 @@
       <data key="d7">right</data>
     </node>
     <node id="16">
-      <data key="d0">24.2159383033</data>
-      <data key="d1">44.9418088338</data>
-      <data key="d2">54.0107501753</data>
+      <data key="d0">47.91148825065275</data>
+      <data key="d1">-19.13812010443864</data>
+      <data key="d2">40.378198433420366</data>
       <data key="d3">16</data>
       <data key="d4">cortical</data>
       <data key="d5">postcentral</data>
@@ -174,9 +174,9 @@
       <data key="d7">right</data>
     </node>
     <node id="17">
-      <data key="d0">18.7675094449</data>
-      <data key="d1">40.4071490846</data>
-      <data key="d2">48.5338564371</data>
+      <data key="d0">55.6958577643276</data>
+      <data key="d1">-33.65585398146396</data>
+      <data key="d2">32.80470966521656</data>
       <data key="d3">17</data>
       <data key="d4">cortical</data>
       <data key="d5">supramarginal</data>
@@ -184,9 +184,9 @@
       <data key="d7">right</data>
     </node>
     <node id="18">
-      <data key="d0">32.3348330161</data>
-      <data key="d1">23.7425160062</data>
-      <data key="d2">51.9207475342</data>
+      <data key="d0">25.562516709740663</data>
+      <data key="d1">-62.70439354781213</data>
+      <data key="d2">52.29257641921397</data>
       <data key="d3">18</data>
       <data key="d4">cortical</data>
       <data key="d5">superiorparietal</data>
@@ -194,9 +194,9 @@
       <data key="d7">right</data>
     </node>
     <node id="19">
-      <data key="d0">20.7857394366</data>
-      <data key="d1">26.1616197183</data>
-      <data key="d2">40.7096830986</data>
+      <data key="d0">44.922471725946565</data>
+      <data key="d1">-64.24233732175053</data>
+      <data key="d2">34.70013112604491</data>
       <data key="d3">19</data>
       <data key="d4">cortical</data>
       <data key="d5">inferiorparietal</data>
@@ -204,9 +204,9 @@
       <data key="d7">right</data>
     </node>
     <node id="20">
-      <data key="d0">39.6554582051</data>
-      <data key="d1">27.6855316126</data>
-      <data key="d2">47.228273739</data>
+      <data key="d0">9.751682368775235</data>
+      <data key="d1">-59.08664199192464</data>
+      <data key="d2">38.39333781965007</data>
       <data key="d3">20</data>
       <data key="d4">cortical</data>
       <data key="d5">precuneus</data>
@@ -214,9 +214,9 @@
       <data key="d7">right</data>
     </node>
     <node id="21">
-      <data key="d0">42.3296985247</data>
-      <data key="d1">16.3822963438</data>
-      <data key="d2">40.1597177678</data>
+      <data key="d0">6.561889250814332</data>
+      <data key="d1">-79.68621064060804</data>
+      <data key="d2">24.155266015200866</data>
       <data key="d3">21</data>
       <data key="d4">cortical</data>
       <data key="d5">cuneus</data>
@@ -224,9 +224,9 @@
       <data key="d7">right</data>
     </node>
     <node id="22">
-      <data key="d0">40.3211488251</data>
-      <data key="d1">20.2697998259</data>
-      <data key="d2">32.4386422977</data>
+      <data key="d0">7.693926638604935</data>
+      <data key="d1">-79.18159951894168</data>
+      <data key="d2">7.6253758268189955</data>
       <data key="d3">22</data>
       <data key="d4">cortical</data>
       <data key="d5">pericalcarine</data>
@@ -234,9 +234,9 @@
       <data key="d7">right</data>
     </node>
     <node id="23">
-      <data key="d0">32.7036736351</data>
-      <data key="d1">16.6817536026</data>
-      <data key="d2">24.6992084433</data>
+      <data key="d0">33.85011035409269</data>
+      <data key="d1">-86.47231551674503</data>
+      <data key="d2">1.078015545533063</data>
       <data key="d3">23</data>
       <data key="d4">cortical</data>
       <data key="d5">lateraloccipital</data>
@@ -244,9 +244,9 @@
       <data key="d7">right</data>
     </node>
     <node id="24">
-      <data key="d0">40.3206599713</data>
-      <data key="d1">28.4343615495</data>
-      <data key="d2">27.7991391679</data>
+      <data key="d0">-1.0</data>
+      <data key="d1">-95.33333333333334</data>
+      <data key="d2">-13.333333333333336</data>
       <data key="d3">24</data>
       <data key="d4">cortical</data>
       <data key="d5">lingual</data>
@@ -254,9 +254,9 @@
       <data key="d7">right</data>
     </node>
     <node id="25">
-      <data key="d0">30.3199468968</data>
-      <data key="d1">41.8752074345</data>
-      <data key="d2">21.8881513442</data>
+      <data key="d0">34.315741081279896</data>
+      <data key="d1">-34.94317763883781</data>
+      <data key="d2">-24.977013607944095</data>
       <data key="d3">25</data>
       <data key="d4">cortical</data>
       <data key="d5">fusiform</data>
@@ -264,9 +264,9 @@
       <data key="d7">right</data>
     </node>
     <node id="26">
-      <data key="d0">33.5980253879</data>
-      <data key="d1">47.6981664316</data>
-      <data key="d2">24.442877292</data>
+      <data key="d0">25.042525208241997</data>
+      <data key="d1">-32.24331433581763</data>
+      <data key="d2">-17.452871547566858</data>
       <data key="d3">26</data>
       <data key="d4">cortical</data>
       <data key="d5">parahippocampal</data>
@@ -274,9 +274,9 @@
       <data key="d7">right</data>
     </node>
     <node id="27">
-      <data key="d0">34.2411924119</data>
-      <data key="d1">62.6151761518</data>
-      <data key="d2">21.4119241192</data>
+      <data key="d0">23.986129753914994</data>
+      <data key="d1">-3.9834451901566013</data>
+      <data key="d2">-32.59552572706935</data>
       <data key="d3">27</data>
       <data key="d4">cortical</data>
       <data key="d5">entorhinal</data>
@@ -284,9 +284,9 @@
       <data key="d7">right</data>
     </node>
     <node id="28">
-      <data key="d0">32.2294303797</data>
-      <data key="d1">73.7041139241</data>
-      <data key="d2">21.3481012658</data>
+      <data key="d0">30.974225122349097</data>
+      <data key="d1">15.017944535073411</data>
+      <data key="d2">-35.34975530179445</data>
       <data key="d3">28</data>
       <data key="d4">cortical</data>
       <data key="d5">temporalpole</data>
@@ -294,9 +294,9 @@
       <data key="d7">right</data>
     </node>
     <node id="29">
-      <data key="d0">21.3044261451</data>
-      <data key="d1">47.3332475553</data>
-      <data key="d2">19.8062274833</data>
+      <data key="d0">51.17753477526736</data>
+      <data key="d1">-29.01929725818124</data>
+      <data key="d2">-25.078555921846103</data>
       <data key="d3">29</data>
       <data key="d4">cortical</data>
       <data key="d5">inferiortemporal</data>
@@ -304,9 +304,9 @@
       <data key="d7">right</data>
     </node>
     <node id="30">
-      <data key="d0">17.4159730034</data>
-      <data key="d1">51.0715410574</data>
-      <data key="d2">25.2078740157</data>
+      <data key="d0">58.72162594199588</data>
+      <data key="d1">-20.461292532541677</data>
+      <data key="d2">-14.460150719342316</data>
       <data key="d3">30</data>
       <data key="d4">cortical</data>
       <data key="d5">middletemporal</data>
@@ -314,9 +314,9 @@
       <data key="d7">right</data>
     </node>
     <node id="31">
-      <data key="d0">19.171875</data>
-      <data key="d1">40.184375</data>
-      <data key="d2">33.3145833333</data>
+      <data key="d0">55.88045903729679</data>
+      <data key="d1">-43.82371692700032</data>
+      <data key="d2">9.95887790883009</data>
       <data key="d3">31</data>
       <data key="d4">cortical</data>
       <data key="d5">bankssts</data>
@@ -324,9 +324,9 @@
       <data key="d7">right</data>
     </node>
     <node id="32">
-      <data key="d0">19.34870188</data>
-      <data key="d1">59.0807967771</data>
-      <data key="d2">31.7367949866</data>
+      <data key="d0">54.11425994136661</data>
+      <data key="d1">-7.419679771480119</data>
+      <data key="d2">-5.823949485078558</data>
       <data key="d3">32</data>
       <data key="d4">cortical</data>
       <data key="d5">superiortemporal</data>
@@ -334,9 +334,9 @@
       <data key="d7">right</data>
     </node>
     <node id="33">
-      <data key="d0">22.0572207084</data>
-      <data key="d1">50.5504087193</data>
-      <data key="d2">36.8991825613</data>
+      <data key="d0">45.47906976744187</data>
+      <data key="d1">-20.831395348837205</data>
+      <data key="d2">9.926744186046506</data>
       <data key="d3">33</data>
       <data key="d4">cortical</data>
       <data key="d5">transversetemporal</data>
@@ -344,9 +344,9 @@
       <data key="d7">right</data>
     </node>
     <node id="34">
-      <data key="d0">27.2797558494</data>
-      <data key="d1">61.8530010173</data>
-      <data key="d2">36.1073245168</data>
+      <data key="d0">37.45914101102244</data>
+      <data key="d1">1.4174585075383277</data>
+      <data key="d2">0.7317876599518627</data>
       <data key="d3">34</data>
       <data key="d4">cortical</data>
       <data key="d5">insula</data>
@@ -354,9 +354,9 @@
       <data key="d7">right</data>
     </node>
     <node id="35">
-      <data key="d0">39.6514522822</data>
-      <data key="d1">52.6784232365</data>
-      <data key="d2">36.6473029046</data>
+      <data key="d0">11.576144532727966</data>
+      <data key="d1">-18.75435111615589</data>
+      <data key="d2">7.514661369655698</data>
       <data key="d3">35</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Thalamus-Proper</data>
@@ -364,9 +364,9 @@
       <data key="d7">right</data>
     </node>
     <node id="36">
-      <data key="d0">38.9507948524</data>
-      <data key="d1">64.8251324754</data>
-      <data key="d2">41.0227100681</data>
+      <data key="d0">14.02277390233894</data>
+      <data key="d1">9.059294214197791</data>
+      <data key="d2">10.528313500205172</data>
       <data key="d3">36</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Caudate</data>
@@ -374,9 +374,9 @@
       <data key="d7">right</data>
     </node>
     <node id="37">
-      <data key="d0">32.713960114</data>
-      <data key="d1">63.3857549858</data>
-      <data key="d2">35.6324786325</data>
+      <data key="d0">26.46431969552806</data>
+      <data key="d1">1.3693307960672314</data>
+      <data key="d2">0.6181414525848368</data>
       <data key="d3">37</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Putamen</data>
@@ -384,9 +384,9 @@
       <data key="d7">right</data>
     </node>
     <node id="38">
-      <data key="d0">36.8515283843</data>
-      <data key="d1">61.1331877729</data>
-      <data key="d2">34.711790393</data>
+      <data key="d0">21.443287467460024</data>
+      <data key="d1">-5.0345853477129054</data>
+      <data key="d2">-0.36333209371512964</data>
       <data key="d3">38</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Pallidum</data>
@@ -394,9 +394,9 @@
       <data key="d7">right</data>
     </node>
     <node id="39">
-      <data key="d0">42.5253807107</data>
-      <data key="d1">68.2639593909</data>
-      <data key="d2">31.845177665</data>
+      <data key="d0">9.618357487922708</data>
+      <data key="d1">11.916666666666657</data>
+      <data key="d2">-6.359903381642511</data>
       <data key="d3">39</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Accumbens-area</data>
@@ -404,9 +404,9 @@
       <data key="d7">right</data>
     </node>
     <node id="40">
-      <data key="d0">33.476342711</data>
-      <data key="d1">51.2730179028</data>
-      <data key="d2">28.0754475703</data>
+      <data key="d0">26.54352296093215</data>
+      <data key="d1">-23.519533927347496</data>
+      <data key="d2">-13.07333790267306</data>
       <data key="d3">40</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Hippocampus</data>
@@ -414,9 +414,9 @@
       <data key="d7">right</data>
     </node>
     <node id="41">
-      <data key="d0">35.3705972435</data>
-      <data key="d1">62.8499234303</data>
-      <data key="d2">26.9188361409</data>
+      <data key="d0">23.59185480301018</data>
+      <data key="d1">-5.093846834882697</data>
+      <data key="d2">-19.094732182381584</data>
       <data key="d3">41</data>
       <data key="d4">subcortical</data>
       <data key="d5">Right-Amygdala</data>
@@ -424,9 +424,9 @@
       <data key="d7">right</data>
     </node>
     <node id="42">
-      <data key="d0">56.5074626866</data>
-      <data key="d1">83.6510305615</data>
-      <data key="d2">31.2850035537</data>
+      <data key="d0">-24.078634146341457</data>
+      <data key="d1">33.89482926829268</data>
+      <data key="d2">-16.32048780487805</data>
       <data key="d3">42</data>
       <data key="d4">cortical</data>
       <data key="d5">lateralorbitofrontal</data>
@@ -434,9 +434,9 @@
       <data key="d7">left</data>
     </node>
     <node id="43">
-      <data key="d0">65.935106383</data>
-      <data key="d1">88.9191489362</data>
-      <data key="d2">35.7095744681</data>
+      <data key="d0">-43.18191161356629</data>
+      <data key="d1">39.945529290853045</data>
+      <data key="d2">-12.629667694415893</data>
       <data key="d3">43</data>
       <data key="d4">cortical</data>
       <data key="d5">parsorbitalis</data>
@@ -444,9 +444,9 @@
       <data key="d7">left</data>
     </node>
     <node id="44">
-      <data key="d0">46.5754385965</data>
-      <data key="d1">99.9824561404</data>
-      <data key="d2">36.9684210526</data>
+      <data key="d0">-6.731874145006842</data>
+      <data key="d1">67.75239398084815</data>
+      <data key="d2">-7.7975376196990425</data>
       <data key="d3">44</data>
       <data key="d4">cortical</data>
       <data key="d5">frontalpole</data>
@@ -454,9 +454,9 @@
       <data key="d7">left</data>
     </node>
     <node id="45">
-      <data key="d0">47.860815047</data>
-      <data key="d1">85.4764890282</data>
-      <data key="d2">32.8764890282</data>
+      <data key="d0">-4.809914642153643</data>
+      <data key="d1">40.47603414313855</data>
+      <data key="d2">-15.430400525279055</data>
       <data key="d3">45</data>
       <data key="d4">cortical</data>
       <data key="d5">medialorbitofrontal</data>
@@ -464,9 +464,9 @@
       <data key="d7">left</data>
     </node>
     <node id="46">
-      <data key="d0">67.3034901366</data>
-      <data key="d1">78.8459787557</data>
-      <data key="d2">38.9567526555</data>
+      <data key="d0">-47.44619799139168</data>
+      <data key="d1">32.22190339550454</data>
+      <data key="d2">3.796508847441416</data>
       <data key="d3">46</data>
       <data key="d4">cortical</data>
       <data key="d5">parstriangularis</data>
@@ -474,9 +474,9 @@
       <data key="d7">left</data>
     </node>
     <node id="47">
-      <data key="d0">68.8278032037</data>
-      <data key="d1">67.6996567506</data>
-      <data key="d2">43.3100686499</data>
+      <data key="d0">-47.12428407789233</data>
+      <data key="d1">15.819969453990069</data>
+      <data key="d2">14.008781977854142</data>
       <data key="d3">47</data>
       <data key="d4">cortical</data>
       <data key="d5">parsopercularis</data>
@@ -484,9 +484,9 @@
       <data key="d7">left</data>
     </node>
     <node id="48">
-      <data key="d0">60.95553585</data>
-      <data key="d1">84.9657968077</data>
-      <data key="d2">49.0653661008</data>
+      <data key="d0">-32.961379142300196</data>
+      <data key="d1">47.5093201754386</data>
+      <data key="d2">16.518396686159846</data>
       <data key="d3">48</data>
       <data key="d4">cortical</data>
       <data key="d5">rostralmiddlefrontal</data>
@@ -494,9 +494,9 @@
       <data key="d7">left</data>
     </node>
     <node id="49">
-      <data key="d0">50.0347638999</data>
-      <data key="d1">72.4101460763</data>
-      <data key="d2">58.793001925</data>
+      <data key="d0">-9.884332328427021</data>
+      <data key="d1">31.958015605603833</data>
+      <data key="d2">40.45726192587338</data>
       <data key="d3">49</data>
       <data key="d4">cortical</data>
       <data key="d5">superiorfrontal</data>
@@ -504,9 +504,9 @@
       <data key="d7">left</data>
     </node>
     <node id="50">
-      <data key="d0">62.5717837166</data>
-      <data key="d1">62.9633312617</data>
-      <data key="d2">58.7535736482</data>
+      <data key="d0">-35.488764994086836</data>
+      <data key="d1">11.53471870248353</data>
+      <data key="d2">46.368136509545536</data>
       <data key="d3">50</data>
       <data key="d4">cortical</data>
       <data key="d5">caudalmiddlefrontal</data>
@@ -514,9 +514,9 @@
       <data key="d7">left</data>
     </node>
     <node id="51">
-      <data key="d0">64.4110636384</data>
-      <data key="d1">52.2023836294</data>
-      <data key="d2">55.0292331909</data>
+      <data key="d0">-42.580769994046435</data>
+      <data key="d1">-5.498412383409402</data>
+      <data key="d2">39.24528676324668</data>
       <data key="d3">51</data>
       <data key="d4">cortical</data>
       <data key="d5">precentral</data>
@@ -524,9 +524,9 @@
       <data key="d7">left</data>
     </node>
     <node id="52">
-      <data key="d0">49.3050847458</data>
-      <data key="d1">38.2001093494</data>
-      <data key="d2">58.9945325314</data>
+      <data key="d0">-6.470457697642161</data>
+      <data key="d1">-27.931206657420248</data>
+      <data key="d2">56.957004160887664</data>
       <data key="d3">52</data>
       <data key="d4">cortical</data>
       <data key="d5">paracentral</data>
@@ -534,9 +534,9 @@
       <data key="d7">left</data>
     </node>
     <node id="53">
-      <data key="d0">48.0220408163</data>
-      <data key="d1">81.8685714286</data>
-      <data key="d2">41.7616326531</data>
+      <data key="d0">-5.482747395833329</data>
+      <data key="d1">38.09147135416666</data>
+      <data key="d2">3.7327473958333286</data>
       <data key="d3">53</data>
       <data key="d4">cortical</data>
       <data key="d5">rostralanteriorcingulate</data>
@@ -544,9 +544,9 @@
       <data key="d7">left</data>
     </node>
     <node id="54">
-      <data key="d0">47.4203718674</data>
-      <data key="d1">70.4801940178</data>
-      <data key="d2">50.4260307195</data>
+      <data key="d0">-4.826798793623439</data>
+      <data key="d1">20.283929340801365</data>
+      <data key="d2">28.448944420508397</data>
       <data key="d3">54</data>
       <data key="d4">cortical</data>
       <data key="d5">caudalanteriorcingulate</data>
@@ -554,9 +554,9 @@
       <data key="d7">left</data>
     </node>
     <node id="55">
-      <data key="d0">48.1032204789</data>
-      <data key="d1">49.1874483898</data>
-      <data key="d2">48.7448389761</data>
+      <data key="d0">-4.973945409429277</data>
+      <data key="d1">-19.265756823821334</data>
+      <data key="d2">39.15037220843672</data>
       <data key="d3">55</data>
       <data key="d4">cortical</data>
       <data key="d5">posteriorcingulate</data>
@@ -564,9 +564,9 @@
       <data key="d7">left</data>
     </node>
     <node id="56">
-      <data key="d0">49.7083764219</data>
-      <data key="d1">38.5935884178</data>
-      <data key="d2">38.2637021717</data>
+      <data key="d0">-6.779677737586326</data>
+      <data key="d1">-47.57546859585662</data>
+      <data key="d2">20.748766853008874</data>
       <data key="d3">56</data>
       <data key="d4">cortical</data>
       <data key="d5">isthmuscingulate</data>
@@ -574,9 +574,9 @@
       <data key="d7">left</data>
     </node>
     <node id="57">
-      <data key="d0">67.9351966874</data>
-      <data key="d1">44.4838509317</data>
-      <data key="d2">54.1186335404</data>
+      <data key="d0">-47.103965970223946</data>
+      <data key="d1">-19.94007256349306</data>
+      <data key="d2">40.69748529963718</data>
       <data key="d3">57</data>
       <data key="d4">cortical</data>
       <data key="d5">postcentral</data>
@@ -584,9 +584,9 @@
       <data key="d7">left</data>
     </node>
     <node id="58">
-      <data key="d0">72.0843258695</data>
-      <data key="d1">36.7070033349</data>
-      <data key="d2">46.769890424</data>
+      <data key="d0">-55.42012201426947</data>
+      <data key="d1">-35.34846448143935</data>
+      <data key="d2">34.48112914900217</data>
       <data key="d3">58</data>
       <data key="d4">cortical</data>
       <data key="d5">supramarginal</data>
@@ -594,9 +594,9 @@
       <data key="d7">left</data>
     </node>
     <node id="59">
-      <data key="d0">58.4920875786</data>
-      <data key="d1">22.8790375027</data>
-      <data key="d2">49.5892044223</data>
+      <data key="d0">-24.52227151730257</data>
+      <data key="d1">-62.876131322094054</data>
+      <data key="d2">51.89299023957409</data>
       <data key="d3">59</data>
       <data key="d4">cortical</data>
       <data key="d5">superiorparietal</data>
@@ -604,9 +604,9 @@
       <data key="d7">left</data>
     </node>
     <node id="60">
-      <data key="d0">68.1187594554</data>
-      <data key="d1">22.6338880484</data>
-      <data key="d2">38.9457892083</data>
+      <data key="d0">-43.51810632651314</data>
+      <data key="d1">-66.02200154096396</data>
+      <data key="d2">33.79847615786319</data>
       <data key="d3">60</data>
       <data key="d4">cortical</data>
       <data key="d5">inferiorparietal</data>
@@ -614,9 +614,9 @@
       <data key="d7">left</data>
     </node>
     <node id="61">
-      <data key="d0">52.0414688983</data>
-      <data key="d1">28.6385211092</data>
-      <data key="d2">45.3457406945</data>
+      <data key="d0">-8.792065663474688</data>
+      <data key="d1">-59.49204856361149</data>
+      <data key="d2">38.409370725034194</data>
       <data key="d3">61</data>
       <data key="d4">cortical</data>
       <data key="d5">precuneus</data>
@@ -624,9 +624,9 @@
       <data key="d7">left</data>
     </node>
     <node id="62">
-      <data key="d0">50.7456197274</data>
-      <data key="d1">17.3945489942</data>
-      <data key="d2">39.0441271901</data>
+      <data key="d0">-7.0064249655805355</data>
+      <data key="d1">-78.46351537402478</data>
+      <data key="d2">24.535566773749423</data>
       <data key="d3">62</data>
       <data key="d4">cortical</data>
       <data key="d5">cuneus</data>
@@ -634,9 +634,9 @@
       <data key="d7">left</data>
     </node>
     <node id="63">
-      <data key="d0">52.3684210526</data>
-      <data key="d1">20.7052631579</data>
-      <data key="d2">29.5778947368</data>
+      <data key="d0">-9.405372405372404</data>
+      <data key="d1">-75.12026862026862</data>
+      <data key="d2">8.74236874236874</data>
       <data key="d3">63</data>
       <data key="d4">cortical</data>
       <data key="d5">pericalcarine</data>
@@ -644,9 +644,9 @@
       <data key="d7">left</data>
     </node>
     <node id="64">
-      <data key="d0">59.1414075993</data>
-      <data key="d1">17.822970639</data>
-      <data key="d2">23.4453799655</data>
+      <data key="d0">-31.030093032086583</data>
+      <data key="d1">-87.27900132902981</data>
+      <data key="d2">-0.10603759255742773</data>
       <data key="d3">64</data>
       <data key="d4">cortical</data>
       <data key="d5">lateraloccipital</data>
@@ -654,9 +654,9 @@
       <data key="d7">left</data>
     </node>
     <node id="65">
-      <data key="d0">52.046901746</data>
-      <data key="d1">28.4580623074</data>
-      <data key="d2">25.6860664156</data>
+      <data key="d0">-15.113546936481171</data>
+      <data key="d1">-64.4406970207982</data>
+      <data key="d2">-4.642683155330715</data>
       <data key="d3">65</data>
       <data key="d4">cortical</data>
       <data key="d5">lingual</data>
@@ -664,9 +664,9 @@
       <data key="d7">left</data>
     </node>
     <node id="66">
-      <data key="d0">63.0540362438</data>
-      <data key="d1">43.1874794069</data>
-      <data key="d2">20.8728171334</data>
+      <data key="d0">-33.8983680250171</data>
+      <data key="d1">-35.85615166617805</data>
+      <data key="d2">-24.985341542069776</data>
       <data key="d3">66</data>
       <data key="d4">cortical</data>
       <data key="d5">fusiform</data>
@@ -674,9 +674,9 @@
       <data key="d7">left</data>
     </node>
     <node id="67">
-      <data key="d0">58.1462962963</data>
-      <data key="d1">48.7333333333</data>
-      <data key="d2">24.4740740741</data>
+      <data key="d0">-25.1254851228978</data>
+      <data key="d1">-30.975420439844754</data>
+      <data key="d2">-18.728762397585164</data>
       <data key="d3">67</data>
       <data key="d4">cortical</data>
       <data key="d5">parahippocampal</data>
@@ -684,9 +684,9 @@
       <data key="d7">left</data>
     </node>
     <node id="68">
-      <data key="d0">58.4387990762</data>
-      <data key="d1">62.1200923788</data>
-      <data key="d2">20.8822170901</data>
+      <data key="d0">-24.585448392554994</data>
+      <data key="d1">-6.357445008460232</data>
+      <data key="d2">-32.684856175972925</data>
       <data key="d3">68</data>
       <data key="d4">cortical</data>
       <data key="d5">entorhinal</data>
@@ -694,9 +694,9 @@
       <data key="d7">left</data>
     </node>
     <node id="69">
-      <data key="d0">59.7966942149</data>
-      <data key="d1">73.0727272727</data>
-      <data key="d2">21.0396694215</data>
+      <data key="d0">-28.238879260543044</data>
+      <data key="d1">13.247255921432696</data>
+      <data key="d2">-36.924032351242055</data>
       <data key="d3">69</data>
       <data key="d4">cortical</data>
       <data key="d5">temporalpole</data>
@@ -704,9 +704,9 @@
       <data key="d7">left</data>
     </node>
     <node id="70">
-      <data key="d0">71.3257320549</data>
-      <data key="d1">50.3892200052</data>
-      <data key="d2">21.3322104172</data>
+      <data key="d0">-51.03323408706848</data>
+      <data key="d1">-30.228534642311104</data>
+      <data key="d2">-24.637965719803653</data>
       <data key="d3">70</data>
       <data key="d4">cortical</data>
       <data key="d5">inferiortemporal</data>
@@ -714,9 +714,9 @@
       <data key="d7">left</data>
     </node>
     <node id="71">
-      <data key="d0">74.1452777778</data>
-      <data key="d1">50.9383333333</data>
-      <data key="d2">26.1438888889</data>
+      <data key="d0">-57.70202566877996</data>
+      <data key="d1">-19.00726766661512</data>
+      <data key="d2">-15.6430338642338</data>
       <data key="d3">71</data>
       <data key="d4">cortical</data>
       <data key="d5">middletemporal</data>
@@ -724,9 +724,9 @@
       <data key="d7">left</data>
     </node>
     <node id="72">
-      <data key="d0">72.6554455446</data>
-      <data key="d1">38.7801980198</data>
-      <data key="d2">32.5198019802</data>
+      <data key="d0">-53.876819407008085</data>
+      <data key="d1">-43.49919137466307</data>
+      <data key="d2">8.757951482479783</data>
       <data key="d3">72</data>
       <data key="d4">cortical</data>
       <data key="d5">bankssts</data>
@@ -734,9 +734,9 @@
       <data key="d7">left</data>
     </node>
     <node id="73">
-      <data key="d0">71.7214271316</data>
-      <data key="d1">59.2263656521</data>
-      <data key="d2">32.5293287644</data>
+      <data key="d0">-52.74992583803026</data>
+      <data key="d1">-6.69022545238802</data>
+      <data key="d2">-5.973894986650848</data>
       <data key="d3">73</data>
       <data key="d4">cortical</data>
       <data key="d5">superiortemporal</data>
@@ -744,9 +744,9 @@
       <data key="d7">left</data>
     </node>
     <node id="74">
-      <data key="d0">67.9563106796</data>
-      <data key="d1">50.5388349515</data>
-      <data key="d2">37.4708737864</data>
+      <data key="d0">-44.50974658869396</data>
+      <data key="d1">-20.813840155945414</data>
+      <data key="d2">9.400584795321635</data>
       <data key="d3">74</data>
       <data key="d4">cortical</data>
       <data key="d5">transversetemporal</data>
@@ -754,9 +754,9 @@
       <data key="d7">left</data>
     </node>
     <node id="75">
-      <data key="d0">62.9554347826</data>
-      <data key="d1">61.2782608696</data>
-      <data key="d2">36.7304347826</data>
+      <data key="d0">-36.64277530235519</data>
+      <data key="d1">0.5928707829407927</data>
+      <data key="d2">1.7402928071292223</data>
       <data key="d3">75</data>
       <data key="d4">cortical</data>
       <data key="d5">insula</data>
@@ -764,9 +764,9 @@
       <data key="d7">left</data>
     </node>
     <node id="76">
-      <data key="d0">51.3794310722</data>
-      <data key="d1">52.0450765864</data>
-      <data key="d2">36.2722100656</data>
+      <data key="d0">-11.313992861718674</data>
+      <data key="d1">-19.064153015466275</data>
+      <data key="d2">7.391415759128762</data>
       <data key="d3">76</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Thalamus-Proper</data>
@@ -774,9 +774,9 @@
       <data key="d7">left</data>
     </node>
     <node id="77">
-      <data key="d0">51.3088133241</data>
-      <data key="d1">65.0416377516</data>
-      <data key="d2">41.5114503817</data>
+      <data key="d0">-13.070125658694778</data>
+      <data key="d1">9.085123631941627</data>
+      <data key="d2">10.973449533846775</data>
       <data key="d3">77</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Caudate</data>
@@ -784,9 +784,9 @@
       <data key="d7">left</data>
     </node>
     <node id="78">
-      <data key="d0">57.9220705347</data>
-      <data key="d1">62.7992036405</data>
-      <data key="d2">35.9874857793</data>
+      <data key="d0">-25.538640235403435</data>
+      <data key="d1">0.6730679882298318</data>
+      <data key="d2">0.9464147436890187</data>
       <data key="d3">78</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Putamen</data>
@@ -794,9 +794,9 @@
       <data key="d7">left</data>
     </node>
     <node id="79">
-      <data key="d0">54.3254716981</data>
-      <data key="d1">61.3325471698</data>
-      <data key="d2">34.375</data>
+      <data key="d0">-20.29076396807298</data>
+      <data key="d1">-5.292664386164958</data>
+      <data key="d2">-0.09730140630938422</data>
       <data key="d3">79</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Pallidum</data>
@@ -804,9 +804,9 @@
       <data key="d7">left</data>
     </node>
     <node id="80">
-      <data key="d0">48.3341523342</data>
-      <data key="d1">67.886977887</data>
-      <data key="d2">32.0786240786</data>
+      <data key="d0">-8.141025641025635</data>
+      <data key="d1">11.415954415954417</data>
+      <data key="d2">-6.320512820512818</data>
       <data key="d3">80</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Accumbens-area</data>
@@ -814,9 +814,9 @@
       <data key="d7">left</data>
     </node>
     <node id="81">
-      <data key="d0">58.2214912281</data>
-      <data key="d1">51.9298245614</data>
-      <data key="d2">27.6666666667</data>
+      <data key="d0">-25.50008382229673</data>
+      <data key="d1">-22.662196144174345</data>
+      <data key="d2">-13.692372170997487</data>
       <data key="d3">81</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Hippocampus</data>
@@ -824,9 +824,9 @@
       <data key="d7">left</data>
     </node>
     <node id="82">
-      <data key="d0">55.9972027972</data>
-      <data key="d1">63.5706293706</data>
-      <data key="d2">26.6503496503</data>
+      <data key="d0">-22.718270571827063</data>
+      <data key="d1">-5.119944211994422</data>
+      <data key="d2">-18.83635518363552</data>
       <data key="d3">82</data>
       <data key="d4">subcortical</data>
       <data key="d5">Left-Amygdala</data>
@@ -834,14 +834,14 @@
       <data key="d7">left</data>
     </node>
     <node id="83">
-      <data key="d0">45.6395410415</data>
-      <data key="d1">49.9777581642</data>
-      <data key="d2">17.0194174757</data>
+      <data key="d0">-6.077964419873837</data>
+      <data key="d1">-31.50152385002481</data>
+      <data key="d2">-32.85392302785456</data>
       <data key="d3">83</data>
       <data key="d4">subcortical</data>
-      <data key="d5">Brain-Stem</data>
-      <data key="d6">Brain-Stem</data>
-      <data key="d7">left</data>
+      <data key="d5">brainstem</data>
+      <data key="d6">brainstem</data>
+      <data key="d7">none</data>
     </node>
     <edge source="1" target="2">
       <data key="d9">5.62910798122</data>

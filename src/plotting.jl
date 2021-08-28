@@ -150,7 +150,8 @@ function plot_edges!(connectome::Connectome, color)
         weight = connectome.A[j, k]
         lines!(x[[j,k]], y[[j,k]], z[[j,k]],
                color=get(color, weight), #matter
-               linewidth=clamp(50*weight,2,50))
+               linewidth=clamp(20*weight,2,50),
+               transparency=true)
     end
 end
 
