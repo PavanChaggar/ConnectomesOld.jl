@@ -29,13 +29,13 @@ end
 Region = Dict(zip([:left, :right, :all, :connectome], [lh_cortex_mesh, rh_cortex_mesh, fs_cortex_mesh, mni_cortex_mesh]))
 View = Dict(zip([:right, :front, :left, :back], [0.0, 0.5, 1.0, 1.5]))
 
-function plot_cortex!(region::Symbol=:all; colour=(:grey,0.05), transparent::Bool=true)
-    mesh!(Region[region], color=colour, transparency=transparent)
+function plot_cortex!(region::Symbol=:all; color=(:grey,0.05), transparency::Bool=true, kwargs...)
+    mesh!(Region[region], color=color, transparency=transparency, kwargs...)
 end
 
-function plot_cortex(region::Symbol=:all; colour=(:grey,1.0), transparent::Bool=false, view=:left)
+function plot_cortex(region::Symbol=:all; view=:left, color=(:grey,1.0), transparency::Bool=false, kwargs...)
     f = set_fig(view=view)
-    plot_cortex!(region; colour, transparent)
+    plot_cortex!(region; color, transparency, kwargs...)
     f
 end
 
@@ -62,86 +62,86 @@ function plot_parc(connectome::Connectome; alpha=1.0)
     f
 end
 
-function plot_roi!(roi::Int, colour=(:grey,1.0))
+function plot_roi!(roi::Int, color=(:grey,1.0))
     meshpath = assetpath * "DKT/roi_$(roi).obj"
-    mesh!(load(meshpath), color=colour, transparency=false)
+    mesh!(load(meshpath), color=color, transparency=false)
 end
 
-function plot_roi!(roi::Vector{Int64}, colour)
+function plot_roi!(roi::Vector{Int64}, color)
     for i in roi
-        plot_roi!(i, colour)
+        plot_roi!(i, color)
     end
 end
 
-function plot_roi(connectome::Connectome, roi::String; cortexcolour=(:grey,0.05), colour=(:blue,0.1), transparent=true)
+function plot_roi(connectome::Connectome, roi::String; cortexcolor=(:grey,0.05), color=(:blue,0.1), transparency=true)
 
     f = set_fig()
-    plot_cortex!(:all; colour=cortexcolour, transparent=transparent)
+    plot_cortex!(:all; color=cortexcolor, transparency=transparency)
     
     ID = get_roi(connectome.parc, roi)
     
     for i in ID
-        plot_roi!(i, colour)
+        plot_roi!(i, color)
     end
     f
 end
 
-function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; cortexcolour=(:grey,0.05), colour=(:blue, 0.1), roi_alpha=1.0, transparent=true)
+function plot_roi(connectome::Connectome, roi::String, hemisphere::Symbol; cortexcolor=(:grey,0.05), color=(:blue, 0.1), roi_alpha=1.0, transparency=true)
 
     f = set_fig()
-    plot_cortex!(hemisphere; colour=cortexcolour, transparent=transparent)
+    plot_cortex!(hemisphere; color=cortexcolor, transparency=transparency)
     plot_cortex!   
     ID = get_roi(connectome.parc, roi)
     h_ID = get_hemisphere(connectome.parc[ID,:], hemisphere)
     for j in h_ID
-        plot_roi!(j, colour)
+        plot_roi!(j, color)
     end
     f
 end
 
-function plot_roi(connectome::Connectome, roi::Vector{String}; cortexcolour=(:grey,0.05), roi_alpha=1.0, transparent=true)
+function plot_roi(connectome::Connectome, roi::Vector{String}; cortexcolor=(:grey,0.05), roi_alpha=1.0, transparency=true)
 
     f = set_fig()
-    plot_cortex!(:all; colour=cortexcolour, transparent=transparent)
-    colour = distinguishable_colors(length(roi))
+    plot_cortex!(:all; color=cortexcolor, transparency=transparency)
+    color = distinguishable_colors(length(roi))
     for (i, j) in enumerate(roi)
         ID = get_roi(connectome.parc, j)
         for k in ID
-            plot_roi!(k, (colour[i], roi_alpha))
+            plot_roi!(k, (color[i], roi_alpha))
         end
     end
     f
 end
 
-function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbol; cortexcolour=(:grey,0.05), roi_alpha=1.0, transparent=true)
+function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbol; cortexcolor=(:grey,0.05), roi_alpha=1.0, transparency=true)
 
     f = set_fig()
-    plot_cortex!(:all; colour=cortexcolour, transparent=transparent)
-    colour = distinguishable_colors(length(roi))
+    plot_cortex!(:all; color=cortexcolor, transparency=transparency)
+    color = distinguishable_colors(length(roi))
     for (i, j) in enumerate(roi)
         ID = get_roi(connectome.parc, j)
         h_ID = get_hemisphere(connectome.parc[ID,:], hemisphere)
         for k in h_ID
-            plot_roi!(k, (colour[i], roi_alpha))
+            plot_roi!(k, (color[i], roi_alpha))
         end
     end
     f
 end
 
-function plot_vertex!(connectome::Connectome, node_size, colour)
+function plot_vertex!(connectome::Connectome, node_size, color)
     x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
-    meshscatter!(x, y, z, markersize=node_size, color=colour)
+    meshscatter!(x, y, z, markersize=node_size, color=color)
 
 end
 
-function plot_vertex(connectome::Connectome; node_size=1.0, colour=(:blue,0.5))
+function plot_vertex(connectome::Connectome; node_size=1.0, color=(:blue,0.5))
     f = set_fig()
     plot_cortex!(:connectome)
-    plot_vertex!(connectome, node_size, colour)
+    plot_vertex!(connectome, node_size, color)
     f
 end
 
-function plot_edges!(connectome::Connectome, colour)
+function plot_edges!(connectome::Connectome, color)
     x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
     coordindex = findall(x->x>0, LowerTriangular(connectome.A))
     
@@ -149,15 +149,15 @@ function plot_edges!(connectome::Connectome, colour)
         j, k = coordindex[i][1], coordindex[i][2]
         weight = connectome.A[j, k]
         lines!(x[[j,k]], y[[j,k]], z[[j,k]],
-               color=get(colour, weight), #matter
+               color=get(color, weight), #matter
                linewidth=clamp(50*weight,2,50))
     end
 end
 
-function plot_connectome(connectome::Connectome; node_size=1.0, node_colour=(:blue, 0.5), edge_colour)
+function plot_connectome(connectome::Connectome; node_size=1.0, node_color=(:blue, 0.5), edge_color)
     f = set_fig()
     plot_cortex!(:connectome)
-    plot_vertex!(connectome, node_size, node_colour)
-    plot_edges!(connectome, edge_colour)
+    plot_vertex!(connectome, node_size, node_color)
+    plot_edges!(connectome, edge_color)
     f
 end
