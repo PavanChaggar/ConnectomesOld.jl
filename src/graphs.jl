@@ -100,17 +100,17 @@ struct Connectome
     function Connectome(graph_path::String; norm=true)
         parc, Graph = load_graphml(graph_path)
         if norm
-            Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
+            Graph = SimpleWeightedGraphs.adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
         end
-        A = adjacency_matrix(Graph)
+        A = SimpleWeightedGraphs.adjacency_matrix(Graph)
         D = degree_matrix(Graph)
-        L = laplacian_matrix(Graph)
+        L = SimpleWeightedGraphs.laplacian_matrix(Graph)
         new(parc, Graph, A, D, L)
     end
 
     function Connectome(parc, A)
         Graph = SimpleWeightedGraph(A)
-        new(parc, Graph, adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
+        new(parc, Graph, SimpleWeightedGraphs.adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
     end
 
     function Connectome(parc, coords, A)
@@ -122,11 +122,15 @@ struct Connectome
 end
 
 # convenience functions for processing graphs
-function graph_filter(connectome::Connectome, cutoff::Float64)
+function graph_filter(connectome::Connectome, cutoff::Float64=1e-2)
     A = graph_filter(connectome.A, cutoff)
     Connectome(connectome.parc, A)
 end
 
-graph_filter(A, cutoff) = A .* (A .> cutoff)
+graph_filter(A, cutoff=1e-2) = A .* (A .> cutoff)
 
 max_norm(M) = M ./ maximum(M)
+
+function degree(C::Connectome)
+    diag(C.D) |> Array 
+end

@@ -128,10 +128,9 @@ function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbo
     f
 end
 
-function plot_vertex!(connectome::Connectome, node_size, color)
+function plot_vertex!(connectome::Connectome, node_size, color, transparency::Bool=true)
     x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
-    meshscatter!(x, y, z, markersize=node_size, color=color)
-
+    meshscatter!(x, y, z, markersize=node_size, color=color, transparency=transparency)
 end
 
 function plot_vertex(connectome::Connectome; node_size=1.0, color=(:blue,0.5))

@@ -11,10 +11,12 @@ using FileIO
 using LinearAlgebra
 using Colors
 using Serialization
+import LightGraphs: degree
 
 include("graphs.jl")
 export Connectome
 export graph_filter
+export degree
 export Connectome2FS
 export FS2Connectome
 export read_cmtk_parcellation
