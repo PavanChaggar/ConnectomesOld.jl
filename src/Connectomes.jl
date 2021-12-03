@@ -4,14 +4,14 @@ using LightXML
 using DataFrames
 using SparseArrays
 using SimpleWeightedGraphs
-using LightGraphs
+using Graphs
 using GLMakie
 using DelimitedFiles
 using FileIO
 using LinearAlgebra
 using Colors
 using Serialization
-import LightGraphs: degree
+import Graphs: degree
 
 include("graphs.jl")
 export Connectome

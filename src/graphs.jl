@@ -100,17 +100,17 @@ struct Connectome
     function Connectome(graph_path::String; norm=true)
         parc, Graph = load_graphml(graph_path)
         if norm
-            Graph = SimpleWeightedGraphs.adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
+            Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
         end
-        A = SimpleWeightedGraphs.adjacency_matrix(Graph)
+        A = adjacency_matrix(Graph)
         D = degree_matrix(Graph)
-        L = SimpleWeightedGraphs.laplacian_matrix(Graph)
+        L = laplacian_matrix(Graph)
         new(parc, Graph, A, D, L)
     end
 
     function Connectome(parc, A)
         Graph = SimpleWeightedGraph(A)
-        new(parc, Graph, SimpleWeightedGraphs.adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
+        new(parc, Graph, adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
     end
 
     function Connectome(parc, coords, A)
