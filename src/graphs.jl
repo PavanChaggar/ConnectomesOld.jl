@@ -91,6 +91,12 @@ function load_graphml(graph_path::String)
     return node_attributes, A
 end
 
+
+"""
+    Connectome(path::String; norm=true)
+
+Main type introduced by Connectomes.jl
+"""
 struct Connectome
     parc::DataFrame
     graph::SimpleWeightedGraph{Int64, Float64}
@@ -100,17 +106,17 @@ struct Connectome
     function Connectome(graph_path::String; norm=true)
         parc, Graph = load_graphml(graph_path)
         if norm
-            Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
+            Graph = SimpleWeightedGraphs.adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
         end
-        A = adjacency_matrix(Graph)
-        D = degree_matrix(Graph)
-        L = laplacian_matrix(Graph)
+        A = SimpleWeightedGraphs.adjacency_matrix(Graph)
+        D = SimpleWeightedGraphs.degree_matrix(Graph)
+        L = SimpleWeightedGraphs.laplacian_matrix(Graph)
         new(parc, Graph, A, D, L)
     end
 
     function Connectome(parc, A)
         Graph = SimpleWeightedGraph(A)
-        new(parc, Graph, adjacency_matrix(Graph), degree_matrix(Graph), laplacian_matrix(Graph))
+        new(parc, Graph, SimpleWeightedGraphs.adjacency_matrix(Graph), SimpleWeightedGraphs.degree_matrix(Graph), SimpleWeightedGraphs.laplacian_matrix(Graph))
     end
 
     function Connectome(parc, coords, A)
