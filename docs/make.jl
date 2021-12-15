@@ -8,7 +8,6 @@ makedocs(
 	"Connectomes" => "connectomes.md"]
 )
 
-deploydocs(;
+deploydocs(
     repo = "github.com/PavanChaggar/Connectomes.jl.git",
-	devbranch="main",
 )
