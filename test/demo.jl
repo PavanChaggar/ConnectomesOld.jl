@@ -1,6 +1,6 @@
 using Revise
 using Connectomes
-using GLMakie
+using Makie
 using FileIO
 using Colors
 using LightXML

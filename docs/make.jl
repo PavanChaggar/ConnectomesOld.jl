@@ -7,3 +7,7 @@ makedocs(
 	"Home" => "index.md",
 	"Connectomes" => "connectomes.md"]
 )
+
+deploydocs(
+    repo = "github.com/PavanChaggar/Connectomes.jl.git",
+)
