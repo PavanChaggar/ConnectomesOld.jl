@@ -1,7 +1,7 @@
 using Documenter, Connectomes
 
 makedocs(
-	sitename="Connectomes Docs",
+	sitename="Connectomes.jl",
 	modules = [Connectomes],
 	pages = [
 	"Home" => "index.md",
