@@ -5,7 +5,7 @@ using DataFrames
 using SparseArrays
 using SimpleWeightedGraphs
 using Graphs
-using GLMakie
+using Makie
 using DelimitedFiles
 using FileIO
 using LinearAlgebra
