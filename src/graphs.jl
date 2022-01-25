@@ -58,6 +58,13 @@ function Connectome(A::SparseMatrixCSC{Float64, Int64}, c::Connectome)
     Connectome(c.parc, G, empty_matrix, empty_matrix, A, D, L)
 end
 
+function Base.show(io::IO, c::Connectome)
+    print(io, "Parcellation: \n")
+    display(c.parc)
+    print(io, "Adjacency Matrix: \n") 
+    display(c.A)
+end
+
 # convenience functions for processing graphs
 function Base.filter(c::Connectome, cutoff::Float64=1e-2)
     A = filter(c.A, cutoff)
