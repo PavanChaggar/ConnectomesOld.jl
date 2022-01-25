@@ -1,13 +1,16 @@
-using Revise
 using Connectomes
 using Makie
-using FileIO
 using Colors
-using LightXML
+using DataFrames
+using CSV
 
 assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
 connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
 connectome = Connectome(connectome_path)
+
+parcpath = joinpath(assetpath, "connectomes/parc.csv")
+newparc = CSV.read(parcpath, DataFrame)
+c = Connectome(newparc, connectome)
 
 plot_cortex()
 

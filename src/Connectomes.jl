@@ -6,6 +6,7 @@ using SparseArrays
 using SimpleWeightedGraphs
 using Graphs
 using Makie
+using CSV
 using DelimitedFiles
 using FileIO
 using LinearAlgebra
@@ -20,6 +21,10 @@ export degree
 export Connectome2FS
 export FS2Connectome
 export read_cmtk_parcellation
+export cmtkConnectome
+
+include("graphml.jl")
+export save_connectome
 
 include("plotting.jl")
 export plot_cortex
