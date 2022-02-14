@@ -12,9 +12,8 @@ parcpath = joinpath(assetpath, "connectomes/parc.csv")
 newparc = CSV.read(parcpath, DataFrame)
 connectome = Connectome(newparc, connectome)
 
-joinpath(@__DIR__, "Connectomes-hcp-scale1.xml")
-
 test = Connectome(joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml"))
+
 save_connectome(joinpath(@__DIR__, "test.xml"), test)
 
 

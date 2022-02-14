@@ -1,5 +1,3 @@
-using Revise
-
 using Connectomes
 using Test
 using SparseArrays
@@ -8,7 +6,7 @@ using LinearAlgebra
 using FileIO
 
 @testset "Connectomes.jl" begin
-    connectome_path = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/connectomes/hcp-scale1-standard-master.graphml"
+    connectome_path = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/connectomes/Connectomes-hcp-scale1.xml"
 
     connectome = Connectome(connectome_path)
 
@@ -21,7 +19,3 @@ using FileIO
     @test length(connectome.parc.ID) == 83 
 
 end
-
-
-
-
