@@ -839,7 +839,7 @@
       <data key="d5">subcortical</data>
       <data key="d6">brainstem</data>
       <data key="d7">subcortex</data>
-      <data key="d8">none</data>
+      <data key="d8">left</data>
     </node>
     <edge source="1" target="2">
       <data key="d9">1.11902457e6</data>
