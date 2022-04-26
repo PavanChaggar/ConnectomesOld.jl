@@ -2,6 +2,7 @@ const dictpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/dicts"
 
 const Connectome2FS = deserialize(dictpath * "/Connectome2FS.jls")
 const FS2Connectome = deserialize(dictpath * "/FS2Connectome.jls")
+const node2FS = deserialize(dictpath * "/node2FS.jls")
 
 """
     Connectome(path::String; norm=true)
