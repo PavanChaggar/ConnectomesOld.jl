@@ -8,10 +8,7 @@ using Test
     assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
     connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
     connectome = cmtkConnectome(connectome_path)
-
-    parcpath = joinpath(assetpath, "connectomes/parc.csv")
-    newparc = CSV.read(parcpath, DataFrame)
-    connectome = Connectome(newparc, connectome)
+    @test connectome isa Connectome
 
     test = Connectome(joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml"))
 
