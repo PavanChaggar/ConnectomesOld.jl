@@ -12,72 +12,68 @@ Main type introduced by Connectomes.jl
 struct Connectome
     parc::DataFrame
     graph::SimpleWeightedGraph{Int64, Float64}
-    n_matrix::SparseMatrixCSC{Float64, Int64}
-    l_matrix::SparseMatrixCSC{Float64, Int64}
-    A::SparseMatrixCSC{Float64, Int64}
-    D::SparseMatrixCSC{Float64, Int64}
-    L::SparseMatrixCSC{Float64, Int64}
+    n_matrix::Matrix{Float64}
+    l_matrix::Matrix{Float64}
 end
 
 function Connectome(graph_path::String; norm=true)
     parc, n_matrix, l_matrix = load_graphml(graph_path)
-    
-    Graph = SimpleWeightedGraph(replace(symmetrise(n_matrix ./ l_matrix), NaN=>0))
+    sym_n = symmetrise(n_matrix)
+    sym_l = symmetrise(l_matrix)
+    Graph = SimpleWeightedGraph(replace(sym_n ./ (sym_l).^2, NaN=>0))
+
+    #Graph = SimpleWeightedGraph(symmetrise(n_matrix ./ (l_matrix)^2))
     if norm
-        Graph = SimpleWeightedGraphs.adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
+        Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
     end
-    A = SimpleWeightedGraphs.adjacency_matrix(Graph)
-    D = SimpleWeightedGraphs.degree_matrix(Graph)
-    L = SimpleWeightedGraphs.laplacian_matrix(Graph)
-    Connectome(parc, Graph, n_matrix, l_matrix, A, D, L)
+    return Connectome(parc, Graph, n_matrix, l_matrix)
 end
 
 function cmtkConnectome(graph_path::String; norm=true)
     parc, n_matrix, l_matrix = cmtk_load_graphml(graph_path)
-    
-    Graph = SimpleWeightedGraph(replace(symmetrise(n_matrix ./ l_matrix), NaN=>0))
+    sym_n = symmetrise(n_matrix)
+    sym_l = symmetrise(l_matrix)
+    Graph = SimpleWeightedGraph(replace(sym_n ./ (sym_l).^2, NaN=>0))
+
     if norm
-        Graph = SimpleWeightedGraphs.adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
+        Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
     end
-    A = SimpleWeightedGraphs.adjacency_matrix(Graph)
-    D = SimpleWeightedGraphs.degree_matrix(Graph)
-    L = SimpleWeightedGraphs.laplacian_matrix(Graph)
-    Connectome(parc, Graph, n_matrix, l_matrix, A, D, L)
+    Connectome(parc, Graph, n_matrix, l_matrix)
 end
 
 
 function Connectome(parc::DataFrame, c::Connectome)
-    Connectome(parc, c.graph, c.n_matrix, c.l_matrix, c.A, c.D, c.L)
+    Connectome(parc, c.graph, c.n_matrix, c.l_matrix)
 end
 
 function Connectome(A::SparseMatrixCSC{Float64, Int64}, c::Connectome)
     G = SimpleWeightedGraph(A)
-    A = SimpleWeightedGraphs.adjacency_matrix(G)
-    D = SimpleWeightedGraphs.degree_matrix(G)
-    L = SimpleWeightedGraphs.laplacian_matrix(G)
-    empty_matrix = spzeros(size(c.A)...)
-    Connectome(c.parc, G, empty_matrix, empty_matrix, A, D, L)
+    Connectome(c.parc, G, c.n_matrix, c.l_matrix)
 end
 
 function Base.show(io::IO, c::Connectome)
     print(io, "Parcellation: \n")
     display(c.parc)
     print(io, "Adjacency Matrix: \n") 
-    display(c.A)
+    display(adjacency_matrix(c))
 end
 
 # convenience functions for processing graphs
 function Base.filter(c::Connectome, cutoff::Float64=1e-2)
-    A = filter(c.A, cutoff)
+    A = filter(adjacency_matrix(c), cutoff)
     Connectome(A, c)
 end
 
-Base.filter(A::SparseMatrixCSC{Float64, Int64}, cutoff::Float64=1e-2) = A .* (A .> cutoff)
+Base.filter(A::SparseMatrixCSC{Float64, Int64}, cutoff::Float64) = A .* (A .> cutoff)
 
 max_norm(M) = M ./ maximum(M)
 
 degree(C::Connectome) = diag(C.D) |> Array 
 
-function symmetrise(A::SparseMatrixCSC{Float64, Int64})
-    A + transpose(A)
+function symmetrise(A)
+    (A + transpose(A)) / 2
 end
+
+adjacency_matrix(c::Connectome) = adjacency_matrix(c.graph)
+degree_matrix(c::Connectome) = degree_matrix(c.graph)
+laplacian_matrix(c::Connectome) = laplacian_matrix(c.graph)

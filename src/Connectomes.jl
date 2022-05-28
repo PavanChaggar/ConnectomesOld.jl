@@ -13,6 +13,8 @@ using LinearAlgebra
 using Colors
 using Serialization
 import Graphs: degree
+import SimpleWeightedGraphs: adjacency_matrix, degree_matrix, laplacian_matrix
+
 
 include("graphs.jl")
 export Connectome
@@ -22,6 +24,10 @@ export Connectome2FS
 export FS2Connectome
 export read_cmtk_parcellation
 export cmtkConnectome
+export adjacency_matrix
+export degree_matrix
+export laplacian_matrix
+
 
 include("graphml.jl")
 export save_connectome

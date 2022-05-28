@@ -4,27 +4,24 @@ using DataFrames
 using CSV
 using Test
 
-assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
-connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
-connectome = cmtkConnectome(connectome_path)
+@testset "xml" begin
+    assetpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/"
+    connectome_path = assetpath * "connectomes/hcp-scale1-standard-master.graphml"
+    connectome = cmtkConnectome(connectome_path)
 
-parcpath = joinpath(assetpath, "connectomes/parc.csv")
-newparc = CSV.read(parcpath, DataFrame)
-connectome = Connectome(newparc, connectome)
+    parcpath = joinpath(assetpath, "connectomes/parc.csv")
+    newparc = CSV.read(parcpath, DataFrame)
+    connectome = Connectome(newparc, connectome)
 
-test = Connectome(joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml"))
+    test = Connectome(joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml"))
 
-save_connectome(joinpath(@__DIR__, "test.xml"), test)
+    save_connectome(joinpath(@__DIR__, "test.xml"), test)
 
+    retest = Connectome(joinpath(@__DIR__, "test.xml"))
 
-retest = Connectome(joinpath(@__DIR__, "test.xml"))
+    for fn in fieldnames(Connectome)
+        eval( quote display( @test test.$fn == retest.$fn) end)
+    end
 
-for fn in fieldnames(Connectome)
-    eval( quote display( @test test.$fn == retest.$fn) end)
+    rm(joinpath(@__DIR__, "test.xml"))
 end
-
-for fn in fieldnames(Connectome)
-    eval( quote display( @test connectome.$fn == retest.$fn) end)
-end
-
-rm(joinpath(@__DIR__, "test.xml"))

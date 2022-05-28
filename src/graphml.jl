@@ -32,8 +32,8 @@ function get_node_attributes(graph)
 end
 
 function get_adjacency_matrix(graph)
-    L = spzeros(83,83)
-    N = spzeros(83,83)
+    L = zeros(83,83)
+    N = zeros(83,83)
 
     local n
     local l
@@ -140,7 +140,7 @@ function add_nodes!(connectome::Connectome, c)
 end
 
 function add_edges!(connectome::Connectome, c)
-    n_edges = findall( x -> x > 0, UpperTriangular(connectome.n_matrix))
+    n_edges = findall( x -> x > 0, connectome.n_matrix)
     
     for edge in n_edges
         s, t = edge.I
