@@ -6,11 +6,13 @@ using SparseArrays
 using SimpleWeightedGraphs
 using Graphs
 using Makie
+using GraphMakie
 using CSV
 using DelimitedFiles
 using FileIO
 using LinearAlgebra
 using Colors
+using ColorSchemes
 using Serialization
 import Graphs: degree
 import SimpleWeightedGraphs: adjacency_matrix, degree_matrix, laplacian_matrix
@@ -27,7 +29,7 @@ export cmtkConnectome
 export adjacency_matrix
 export degree_matrix
 export laplacian_matrix
-
+export get_edge_weight
 
 include("graphml.jl")
 export save_connectome
@@ -41,8 +43,9 @@ export plot_roi
 export plot_roi!
 export plot_connectome
 export plot_parc
-export plot_vertex
+export plot_vertices
 export plot_vertex!
-export plot_edges!
+export plot_connectome_test
+export plot_connectome_test!
 
 end

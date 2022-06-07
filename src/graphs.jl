@@ -77,3 +77,9 @@ end
 adjacency_matrix(c::Connectome) = adjacency_matrix(c.graph)
 degree_matrix(c::Connectome) = degree_matrix(c.graph)
 laplacian_matrix(c::Connectome) = laplacian_matrix(c.graph)
+
+function get_edge_weight(c::Connectome)
+    w = weights(c.graph)
+    lt_w = UpperTriangular(w) |> sparse
+    lt_w.nzval
+end

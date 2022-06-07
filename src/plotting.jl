@@ -45,7 +45,7 @@ function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
     colors = distinguishable_colors(length(h_ids))
     for (i, j) in enumerate(h_ids)
         roi = load(assetpath * "DKT/roi_$(j).obj")
-        mesh!(roi, color=(colors[i], alpha), transparency=false, show_axis=false)
+        mesh!(roi, color=(colors[i], alpha), transparency=false)
     end
 end
 
@@ -133,31 +133,60 @@ function plot_vertex!(connectome::Connectome, node_size, color, transparency::Bo
     meshscatter!(x, y, z, markersize=node_size, color=color, transparency=transparency)
 end
 
-function plot_vertex(connectome::Connectome; node_size=1.0, color=(:blue,0.5))
+function plot_vertices(connectome::Connectome; node_size=1.0, color=(:blue,0.5))
     f = set_fig()
     plot_cortex!(:connectome)
     plot_vertex!(connectome, node_size, color)
     f
 end
 
-function plot_edges!(connectome::Connectome, color)
-    x, y, z = connectome.parc.x[:], connectome.parc.y[:], connectome.parc.z[:]
-    coordindex = findall(x->x>0, LowerTriangular(connectome.A))
-    
-    for i ∈ 1:length(coordindex)
-        j, k = coordindex[i][1], coordindex[i][2]
-        weight = connectome.A[j, k]
-        lines!(x[[j,k]], y[[j,k]], z[[j,k]],
-               color=get(color, weight), #matter
-               linewidth=clamp(20*weight,2,50),
-               transparency=true)
-    end
-end
-
-function plot_connectome(connectome::Connectome; node_size=1.0, node_color=(:blue, 0.5), edge_color)
+function plot_connectome(connectome::Connectome; 
+                              edge_weighted=true, 
+                              edge_map = ColorSchemes.viridis,
+                              edge_size = 10.0,
+                              node_weighted = true,
+                              node_size = 10.0)
     f = set_fig()
     plot_cortex!(:connectome)
-    plot_vertex!(connectome, node_size, node_color)
-    plot_edges!(connectome, edge_color)
+    plot_connectome!(connectome; 
+                     edge_weighted=edge_weighted, 
+                     edge_map=edge_map, 
+                     edge_size=edge_size,
+                     node_weighted=node_weighted,
+                     node_size=node_size)
     f
 end
+
+
+function plot_connectome!(connectome::Connectome; 
+                              edge_weighted=true, 
+                              edge_map = ColorSchemes.viridis,
+                              edge_size = 10.0,
+                              node_weighted = true,
+                              node_size = 10.0)
+
+        g = connectome.graph
+        positions = Point.(zip(connectome.parc.x, connectome.parc.y, connectome.parc.z))
+
+        if edge_weighted
+            edge_color = get(edge_map, get_edge_weight(connectome))
+            edge_width = edge_size .* get_edge_weight(connectome)
+        else
+            edge_color = [colorant"grey" for i in 1:ne(g)]
+            edge_width = fill(edge_size, ne(g))
+        end
+
+        if node_weighted
+            node_width = node_size .* Array(diag(degree_matrix(connectome)))
+        else    
+            node_width = fill(node_size, nv(g))
+        end
+
+        graphplot!(g,
+                   edge_width = edge_width,
+                   edge_color = edge_color,
+                   node_size = node_width,
+                   node_color = fill((:blue, 0.5), nv(g));
+                   layout = _ -> positions)
+end
+
