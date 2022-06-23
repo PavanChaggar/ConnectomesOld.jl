@@ -38,14 +38,12 @@ include("plotting.jl")
 export plot_cortex
 export plot_cortex!
 export plot_mesh
-export testplot
 export plot_roi
 export plot_roi!
-export plot_connectome
 export plot_parc
 export plot_vertices
 export plot_vertex!
-export plot_connectome_test
-export plot_connectome_test!
+export plot_connectome
+export plot_connectome!
 
 end
