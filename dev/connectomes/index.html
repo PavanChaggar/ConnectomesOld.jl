@@ -4,7 +4,36 @@
     graph::SimpleWeightedGraph{Int64, Float64}
     n_matrix::Matrix{Float64}
     l_matrix::Matrix{Float64}
-end</code></pre><p>where <code>parc</code> is the parcellation atlas, graph is a  <code>SimpleWeightedGraph</code> encoding a weighted Connectome, <code>n_matrix</code> is  the length matrix and <code>l_matrix</code> is the length matrix.</p><p><strong>Example</strong></p><pre><code class="language-julia hljs">julia&gt; cpath = Connectomes.connectomepath()
-&quot;/Users/pavanchaggar/.julia/dev/Connectomes/assets/connectomes/Connectomes-hcp-scale1.xml&quot;
-
-julia&gt; Connectomes(cpath)</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/PavanChaggar/Connectomes.jl/blob/28579ad7f5dbaa36d46cfbda5f1fe9e5834c73bf/src/graphs.jl#L7-L32">source</a></section></article></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Saturday 25 June 2022 17:54">Saturday 25 June 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+end</code></pre><p>where <code>parc</code> is the parcellation atlas, graph is a  <code>SimpleWeightedGraph</code> encoding a weighted Connectome, <code>n_matrix</code> is  the length matrix and <code>l_matrix</code> is the length matrix.</p><p><strong>Example</strong></p><pre><code class="language-julia hljs">julia&gt; filter(Connectome(Connectomes.connectomepath()), 1e-2)
+Parcellation: 
+83×8 DataFrame
+ Row │ ID     Label                 Region       Hemisphere  x          y           z            Lobe      
+     │ Int64  String                String       String      Float64    Float64     Float64      String    
+─────┼─────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │     1  lateralorbitofrontal  cortical     right        25.0057    33.4625    -16.6508     frontal
+   2 │     2  parsorbitalis         cortical     right        43.7891    41.4659    -11.8451     frontal
+   3 │     3  frontalpole           cortical     right         9.59579   67.3442     -8.94211    frontal
+   4 │     4  medialorbitofrontal   cortical     right         5.799     40.7383    -15.7166     frontal
+   5 │     5  parstriangularis      cortical     right        48.3993    31.8555      5.60427    frontal
+  ⋮  │   ⋮             ⋮                 ⋮           ⋮           ⋮          ⋮            ⋮           ⋮
+  80 │    80  Left-Accumbens-area   subcortical  left         -8.14103   11.416      -6.32051    subcortex
+  81 │    81  Left-Hippocampus      subcortical  left        -25.5001   -22.6622    -13.6924     temporal
+  82 │    82  Left-Amygdala         subcortical  left        -22.7183    -5.11994   -18.8364     temporal
+  83 │    83  brainstem             subcortical  none         -6.07796  -31.5015    -32.8539     subcortex
+                                                                                            74 rows omitted
+Adjacency Matrix: 
+83×83 SparseArrays.SparseMatrixCSC{Float64, Int64} with 392 stored entries:
+⣮⢛⣣⡠⠀⠀⠀⠀⠀⠀⠀⡁⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠉⡺⢺⠒⣒⠄⢀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠂⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠘⠜⠚⣠⣐⡐⠀⠀⣀⡄⠀⠀⠀⠀⠀⠈⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠐⢐⠸⢴⡳⡄⠌⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡀⠍⠯⡧⡄⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠄⠠⠀⠄⠀⠼⠁⠀⠀⠉⠯⡣⣄⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄
+⠀⠀⠀⠀⠀⠀⠀⠀⠤⠄⠀⠝⠏⠅⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠁
+⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡎⡭⡦⠂⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀
+⠀⠀⠈⠠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⠋⡏⡩⡕⠀⠄⠀⠀⠐⠐⠀⠀⠀
+⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠉⠡⡦⢥⠁⠀⢰⠶⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠅⠓⢯⣳⣐⠂⠀⠀⢀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⣀⠰⠘⢺⣲⣀⠀⠘⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠂⠐⠀⠘⠃⠀⠀⠀⠘⢪⣲⣔⡂
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠄⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠰⠹⠐⠀</code></pre></div><a class="docs-sourcelink" target="_blank" href="https://github.com/PavanChaggar/Connectomes.jl/blob/e6cdd875a05ac98fb6d20017d90e9832082e926f/src/graphs.jl#L7-L61">source</a></section></article></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Saturday 25 June 2022 18:05">Saturday 25 June 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
