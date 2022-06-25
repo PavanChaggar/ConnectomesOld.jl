@@ -3,7 +3,7 @@ Connectome2FS() = deserialize(joinpath(assetpath, "dicts/Connectome2FS.jls"))
 FS2Connectome() = deserialize(joinpath(assetpath, "dicts/FS2Connectome.jls"))
 node2FS() = deserialize(joinpath(assetpath, "dicts/node2FS.jls"))
 
-connectomepath() = joinpath(assetpath(), "connectomes/Connectomes-hcp-scale1.xml")
+connectomepath() = joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml")
 """
     Connectome(path::String; norm=true)
 
@@ -24,10 +24,39 @@ the length matrix and `l_matrix` is the length matrix.
 # Example
 
 ```julia
-julia> cpath = Connectomes.connectomepath()
-"/Users/pavanchaggar/.julia/dev/Connectomes/assets/connectomes/Connectomes-hcp-scale1.xml"
-
-julia> Connectomes(cpath)
+julia> filter(Connectome(Connectomes.connectomepath()), 1e-2)
+Parcellation: 
+83×8 DataFrame
+ Row │ ID     Label                 Region       Hemisphere  x          y           z            Lobe      
+     │ Int64  String                String       String      Float64    Float64     Float64      String    
+─────┼─────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │     1  lateralorbitofrontal  cortical     right        25.0057    33.4625    -16.6508     frontal
+   2 │     2  parsorbitalis         cortical     right        43.7891    41.4659    -11.8451     frontal
+   3 │     3  frontalpole           cortical     right         9.59579   67.3442     -8.94211    frontal
+   4 │     4  medialorbitofrontal   cortical     right         5.799     40.7383    -15.7166     frontal
+   5 │     5  parstriangularis      cortical     right        48.3993    31.8555      5.60427    frontal
+  ⋮  │   ⋮             ⋮                 ⋮           ⋮           ⋮          ⋮            ⋮           ⋮
+  80 │    80  Left-Accumbens-area   subcortical  left         -8.14103   11.416      -6.32051    subcortex
+  81 │    81  Left-Hippocampus      subcortical  left        -25.5001   -22.6622    -13.6924     temporal
+  82 │    82  Left-Amygdala         subcortical  left        -22.7183    -5.11994   -18.8364     temporal
+  83 │    83  brainstem             subcortical  none         -6.07796  -31.5015    -32.8539     subcortex
+                                                                                            74 rows omitted
+Adjacency Matrix: 
+83×83 SparseArrays.SparseMatrixCSC{Float64, Int64} with 392 stored entries:
+⣮⢛⣣⡠⠀⠀⠀⠀⠀⠀⠀⡁⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠉⡺⢺⠒⣒⠄⢀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠂⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠘⠜⠚⣠⣐⡐⠀⠀⣀⡄⠀⠀⠀⠀⠀⠈⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠐⢐⠸⢴⡳⡄⠌⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡀⠍⠯⡧⡄⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠄⠠⠀⠄⠀⠼⠁⠀⠀⠉⠯⡣⣄⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄
+⠀⠀⠀⠀⠀⠀⠀⠀⠤⠄⠀⠝⠏⠅⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠁
+⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡎⡭⡦⠂⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀
+⠀⠀⠈⠠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⠋⡏⡩⡕⠀⠄⠀⠀⠐⠐⠀⠀⠀
+⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠉⠡⡦⢥⠁⠀⢰⠶⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠅⠓⢯⣳⣐⠂⠀⠀⢀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⢀⣀⠰⠘⢺⣲⣀⠀⠘⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠂⠐⠀⠘⠃⠀⠀⠀⠘⢪⣲⣔⡂
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠄⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠀⠰⠹⠐⠀
 ```
 """
 struct Connectome
