@@ -3,12 +3,12 @@ fs_cortex() =  joinpath(assetpath, "meshes/cortex/fs-cortex.obj")
 rh_cortex() =  joinpath(assetpath, "meshes/cortex/rh-cortex.obj")
 lh_cortex() =  joinpath(assetpath, "meshes/cortex/lh-cortex.obj")
 
-function set_fig(;dimensions::Tuple{Int64, Int64}=(1600,900), view=:front)
-    f = Figure(resolution = dimensions)
+function set_fig(;resolution::Tuple{Int64, Int64}=(1600,900), view=:front)
+    f = Figure(resolution = resolution)
     ax = Axis3(f[1,1], aspect = :data, azimuth = View[view]pi, elevation=0.0pi)
     hidedecorations!(ax)
     hidespines!(ax)
-    f, ax
+    f
 end
 
 function get_hemisphere(parc, hemisphere::Symbol)
@@ -28,10 +28,10 @@ function plot_cortex!(region::Symbol=:all; color=(:grey,0.05), transparency::Boo
     mesh!(load(Region[region]), color=color, transparency=transparency, kwargs...)
 end
 
-function plot_cortex(region::Symbol=:all; view=:left, color=(:grey,1.0), transparency::Bool=false, kwargs...)
-    f, ax = set_fig(view=view)
+function plot_cortex(region::Symbol=:all; resolution=(800, 600), view=:left, color=(:grey,1.0), transparency::Bool=false, kwargs...)
+    f = set_fig(resolution=resolution, view=view)
     plot_cortex!(region; color, transparency, kwargs...)
-    f, ax
+    f
 end
 
 function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
