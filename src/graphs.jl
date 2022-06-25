@@ -1,13 +1,35 @@
-const dictpath = "/"*relpath((@__FILE__)*"/../..","/") * "/assets/dicts"
 
-Connectome2FS() = deserialize(dictpath * "/Connectome2FS.jls")
-FS2Connectome() = deserialize(dictpath * "/FS2Connectome.jls")
-node2FS() = deserialize(dictpath * "/node2FS.jls")
+assetpath() = pkgdir(Connectomes, "assets")
+Connectome2FS() = deserialize(joinpath(assetpath(), "dicts/Connectome2FS.jls"))
+FS2Connectome() = deserialize(joinpath(assetpath(), "dicts/FS2Connectome.jls"))
+node2FS() = deserialize(joinpath(assetpath(), "dicts/node2FS.jls"))
 
+connectomepath() = joinpath(assetpath(), "connectomes/Connectomes-hcp-scale1.xml")
 """
     Connectome(path::String; norm=true)
 
-Main type introduced by Connectomes.jl
+Main type introduced by Connectomes.jl,
+
+```julia
+struct Connectome
+    parc::DataFrame
+    graph::SimpleWeightedGraph{Int64, Float64}
+    n_matrix::Matrix{Float64}
+    l_matrix::Matrix{Float64}
+end
+```
+where `parc` is the parcellation atlas, graph is a 
+`SimpleWeightedGraph` encoding a weighted Connectome, `n_matrix` is 
+the length matrix and `l_matrix` is the length matrix.
+
+# Example
+
+```julia
+julia> cpath = Connectomes.connectomepath()
+"/Users/pavanchaggar/.julia/dev/Connectomes/assets/connectomes/Connectomes-hcp-scale1.xml"
+
+julia> Connectomes(cpath)
+```
 """
 struct Connectome
     parc::DataFrame
