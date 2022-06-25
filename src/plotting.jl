@@ -1,7 +1,7 @@
-mni_cortex() = joinpath(assetpath, "cortex/connectome-cortex.obj")
-fs_cortex() =  joinpath(assetpath, "cortex/fs-cortex.obj")
-rh_cortex() =  joinpath(assetpath, "cortex/rh-cortex.obj")
-lh_cortex() =  joinpath(assetpath, "cortex/lh-cortex.obj")
+mni_cortex() = joinpath(assetpath, "meshes/cortex/connectome-cortex.obj")
+fs_cortex() =  joinpath(assetpath, "meshes/cortex/fs-cortex.obj")
+rh_cortex() =  joinpath(assetpath, "meshes/cortex/rh-cortex.obj")
+lh_cortex() =  joinpath(assetpath, "meshes/cortex/lh-cortex.obj")
 
 function set_fig(;dimensions::Tuple{Int64, Int64}=(1600,900), view=:front)
     f = Figure(resolution = dimensions)
@@ -29,9 +29,9 @@ function plot_cortex!(region::Symbol=:all; color=(:grey,0.05), transparency::Boo
 end
 
 function plot_cortex(region::Symbol=:all; view=:left, color=(:grey,1.0), transparency::Bool=false, kwargs...)
-    f, _ = set_fig(view=view)
+    f, ax = set_fig(view=view)
     plot_cortex!(region; color, transparency, kwargs...)
-    f
+    f, ax
 end
 
 function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
