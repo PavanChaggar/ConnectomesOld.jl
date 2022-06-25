@@ -1,8 +1,7 @@
-
-assetpath() = pkgdir(Connectomes, "assets")
-Connectome2FS() = deserialize(joinpath(assetpath(), "dicts/Connectome2FS.jls"))
-FS2Connectome() = deserialize(joinpath(assetpath(), "dicts/FS2Connectome.jls"))
-node2FS() = deserialize(joinpath(assetpath(), "dicts/node2FS.jls"))
+const assetpath = pkgdir(Connectomes, "assets")
+Connectome2FS() = deserialize(joinpath(assetpath, "dicts/Connectome2FS.jls"))
+FS2Connectome() = deserialize(joinpath(assetpath, "dicts/FS2Connectome.jls"))
+node2FS() = deserialize(joinpath(assetpath, "dicts/node2FS.jls"))
 
 connectomepath() = joinpath(assetpath(), "connectomes/Connectomes-hcp-scale1.xml")
 """
