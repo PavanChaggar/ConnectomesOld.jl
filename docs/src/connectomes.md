@@ -13,7 +13,12 @@ Page(exportable=true, offline=true)
 
 ```@example plot
 using WGLMakie
+scatter(rand(10), rand(10))
+```
+
+```@example plot
+using WGLMakie
 using Connectomes
 
-plot_cortex()
+f, ax = plot_cortex()
 ```
