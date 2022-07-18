@@ -45,20 +45,20 @@ function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
 end
 
 function plot_parc(connectome::Connectome, hemisphere::Symbol; alpha=1.0, view=:left)
-    f, _ = set_fig(view=view)
+    f = set_fig(view=view)
     plot_parc!(connectome, hemisphere; alpha)
     f
 end
 
 function plot_parc(connectome::Connectome; alpha=1.0)
-    f, _ = set_fig()
+    f  = set_fig()
     plot_parc!(connectome, :left; alpha)
     plot_parc!(connectome, :right; alpha)
     f
 end
 
 function plot_roi!(roi::Int, color=(:grey,1.0); transparency=false)
-    meshpath = assetpath * "DKT/roi_$(roi).obj"
+    meshpath = joinpath(assetpath, "meshes/DKT/roi_$(roi).obj")
     mesh!(load(meshpath), color=color, transparency=transparency)
 end
 
@@ -70,7 +70,7 @@ end
 
 function plot_roi(connectome::Connectome, roi::String; cortexcolor=(:grey,0.05), color=(:blue,0.1), transparency=true)
 
-    f, _  = set_fig()
+    f  = set_fig()
     plot_cortex!(:all; color=cortexcolor, transparency=transparency)
     
     ID = get_roi(connectome.parc, roi)
@@ -96,7 +96,7 @@ end
 
 function plot_roi(connectome::Connectome, roi::Vector{String}; cortexcolor=(:grey,0.05), roi_alpha=1.0, transparency=true)
 
-    f, _ = set_fig()
+    f  = set_fig()
     plot_cortex!(:all; color=cortexcolor, transparency=transparency)
     color = distinguishable_colors(length(roi))
     for (i, j) in enumerate(roi)
@@ -110,7 +110,7 @@ end
 
 function plot_roi(connectome::Connectome, roi::Vector{String}, hemisphere::Symbol; cortexcolor=(:grey,0.05), roi_alpha=1.0, transparency=true)
 
-    f, _ = set_fig()
+    f = set_fig()
     plot_cortex!(:all; color=cortexcolor, transparency=transparency)
     color = distinguishable_colors(length(roi))
     for (i, j) in enumerate(roi)
@@ -129,7 +129,7 @@ function plot_vertex!(connectome::Connectome, node_size, color, transparency::Bo
 end
 
 function plot_vertices(connectome::Connectome; node_size=1.0, color=(:blue,0.5))
-    f, _ = set_fig()
+    f  = set_fig()
     plot_cortex!(:connectome)
     plot_vertex!(connectome, node_size, color)
     f
@@ -141,7 +141,7 @@ function plot_connectome(connectome::Connectome;
                               edge_size = 10.0,
                               node_weighted = true,
                               node_size = 10.0)
-    f, _ = set_fig()
+    f = set_fig()
     plot_cortex!(:connectome)
     plot_connectome!(connectome; 
                      edge_weighted=edge_weighted, 
