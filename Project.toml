@@ -21,7 +21,7 @@ SimpleWeightedGraphs = "47aef6b3-ad0c-573a-a1e2-d07658019622"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [compat]
-CSV = "0.8, 0.9"
+CSV = "0.8 - 0.10"
 Colors = "0.12"
 DataFrames = "1.1"
 FileIO = "1.9"
