@@ -140,7 +140,7 @@ function plot_connectome(connectome::Connectome;
                               edge_map = ColorSchemes.viridis,
                               edge_size = 10.0,
                               node_weighted = true,
-                              node_color= (:blue, 0.5)
+                              node_color= (:blue, 0.5),
                               node_size = 10.0)
     f = set_fig()
     plot_cortex!(:connectome)
