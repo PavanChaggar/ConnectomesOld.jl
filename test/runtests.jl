@@ -38,4 +38,6 @@ using FileIO
 
     @test cortex_c isa Connectome 
     @test size(cortex_c.n_matrix) == (length(cortex.ID), length(cortex.ID))
+    A3 = adjacency_matrix(cortex_c)
+    @test maximum(A3) == 1.0
 end
