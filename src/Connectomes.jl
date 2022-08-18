@@ -30,6 +30,7 @@ export adjacency_matrix
 export degree_matrix
 export laplacian_matrix
 export get_edge_weight
+export slice
 
 include("graphml.jl")
 export save_connectome

@@ -32,4 +32,10 @@ using FileIO
     @test connectome.parc.z isa Vector{Float64} 
 
     @test length(connectome.parc.ID) == 83 
+
+    cortex = filter(x -> x.Lobe != "subcortex", connectome.parc)
+    cortex_c = slice(connectome, cortex)
+
+    @test cortex_c isa Connectome 
+    @test size(cortex_c.n_matrix) == (length(cortex.ID), length(cortex.ID))
 end

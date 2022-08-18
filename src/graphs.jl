@@ -3,7 +3,7 @@ Connectome2FS() = deserialize(joinpath(assetpath, "dicts/Connectome2FS.jls"))
 FS2Connectome() = deserialize(joinpath(assetpath, "dicts/FS2Connectome.jls"))
 node2FS() = deserialize(joinpath(assetpath, "dicts/node2FS.jls"))
 
-connectomepath() = joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml")
+connectome_path() = joinpath(assetpath, "connectomes/Connectomes-hcp-scale1.xml")
 """
     Connectome(path::String; norm=true)
 
@@ -132,4 +132,12 @@ function get_edge_weight(c::Connectome)
     w = weights(c.graph)
     lt_w = UpperTriangular(w) |> sparse
     lt_w.nzval
+end
+
+function slice(c::Connectome, rois::DataFrame)
+    N = c.n_matrix[rois.ID, rois.ID]
+    L = c.l_matrix[rois.ID, rois.ID]
+    A = replace(( N ./ L.^2), NaN => 0) |> symmetrise |> max_norm
+    G = SimpleWeightedGraph(A)
+    Connectome(rois, G, N, L)
 end
