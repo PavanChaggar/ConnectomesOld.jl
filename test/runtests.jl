@@ -40,4 +40,6 @@ using FileIO
     @test size(cortex_c.n_matrix) == (length(cortex.ID), length(cortex.ID))
     A3 = adjacency_matrix(cortex_c)
     @test maximum(A3) == 1.0
+    @test cortex_c.n_matrix == connectome.n_matrix[cortex.ID, cortex.ID]
+    @test cortex_c.l_matrix == connectome.l_matrix[cortex.ID, cortex.ID]
 end
