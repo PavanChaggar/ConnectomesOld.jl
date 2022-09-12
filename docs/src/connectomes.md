@@ -35,7 +35,44 @@ ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
 hidedecorations!(ax)
 hidespines!(ax)
 
-plot_cortex!(:right; color=(:grey, 1.0))
+plot_cortex!(:right; color=(:grey, 0.5), transparency=true)
+
+f
+```
+
+# Plotting Individual Regions
+
+A common use case will be to plot scalar fields across different brain regions. This is easy to do using `Connectomes.jl`. Let's look at an example where we just want to plot the subcortical regions of the brain atlas.
+
+First, we need to get the subcortical regions. We do this by first loading in a connectome and parcellation. In `Connectomes.jl` the default parcellation uses the DKT atlas.
+
+```@example plot
+
+c = Connectomes.connectome_path() |> Connectome 
+
+subcortex = filter(x -> x.Region == "subcortical", c.parc)
+```
+
+Now we know what the subcortical regions are, we can plot them. 
+
+```@example plot
+# generate some colors for different regions
+using Colors 
+colors = distinguishable_colors(length(subcortex.ID))
+
+# make the Makie figure
+f = Figure(resolution=(800, 800))
+ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
+hidedecorations!(ax)
+hidespines!(ax)
+
+# add a cortex to the figure
+plot_cortex!()
+
+# loop over the regions and plot them!
+for (i, region) in enumerate(subcortex.ID)
+    plot_roi!(region, colors[i])
+end
 
 f
 ```
