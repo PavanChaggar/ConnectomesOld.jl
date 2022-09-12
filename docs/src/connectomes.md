@@ -76,3 +76,80 @@ end
 
 f
 ```
+
+Instead of generating colors, we can also use a `ColorSchemes.jl` to define a colormap and get the color corresponding to a value between 0-1. 
+
+
+```@example plot
+# get regions in the left hemisphere
+c = Connectomes.connectome_path() |> Connectome 
+left = filter(x -> x.Hemisphere == "left", c.parc)
+
+# create some values we want to use for colors, these could be, for example, protein concentration
+p = rand(length(left.ID))
+
+# and define a colormap 
+using ColorSchemes
+cmap = ColorSchemes.RdYlBu |> reverse
+
+# make the Makie figure
+f = Figure(resolution=(800, 800))
+ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
+hidedecorations!(ax)
+hidespines!(ax)
+
+# add a cortex to the figure
+plot_cortex!()
+
+# loop over the regions and plot them!
+for (i, region) in enumerate(left.ID)
+    plot_roi!(region, get(cmap, p[i]))
+end
+
+f
+```
+ 
+Now say we want to add another brain to the image, using the `Makie` layout paradigm, we can add another `Axis` and change some of the layout properties before plotting a new brain. 
+
+
+```@example plot
+# get regions in the left hemisphere
+c = Connectomes.connectome_path() |> Connectome 
+left = filter(x -> x.Hemisphere == "left", c.parc)
+
+# create some values we want to use for colors, these could be, for example, protein concentration
+p = rand(length(left.ID))
+
+# and define a colormap 
+using ColorSchemes
+cmap = ColorSchemes.RdYlBu |> reverse
+
+# make the Makie figure, note we're changing the figure resolution to accomodate the additional brain
+f = Figure(resolution=(1600, 800))
+ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
+hidedecorations!(ax)
+hidespines!(ax)
+
+# add a cortex to the figure
+plot_cortex!()
+
+# loop over the regions and plot them!
+for (i, region) in enumerate(left.ID)
+    plot_roi!(region, get(cmap, p[i]))
+end
+
+# make a new axis on the same figure, with different azimuth
+ax = Axis3(f[1,2], aspect=:data, azimuth = 1.0pi, elevation=0.0pi)
+hidedecorations!(ax)
+hidespines!(ax)
+
+# add a cortex to the figure
+plot_cortex!()
+
+# loop over the regions and plot them!
+for (i, region) in enumerate(left.ID)
+    plot_roi!(region, get(cmap, p[i]))
+end
+
+f
+```
