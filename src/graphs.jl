@@ -70,11 +70,13 @@ function Connectome(graph_path::String; norm=true)
     parc, n_matrix, l_matrix = load_graphml(graph_path)
     sym_n = symmetrise(n_matrix)
     sym_l = symmetrise(l_matrix)
-    Graph = SimpleWeightedGraph(replace(sym_n ./ (sym_l).^2, NaN=>0))
+    A = replace(sym_n ./ (sym_l).^2, NaN=>0)
 
     #Graph = SimpleWeightedGraph(symmetrise(n_matrix ./ (l_matrix)^2))
     if norm
-        Graph = adjacency_matrix(Graph) |> max_norm |> SimpleWeightedGraph
+        Graph = A |> max_norm |> SimpleWeightedGraph
+    else
+        Graph = SimpleWeightedGraph(A)
     end
     return Connectome(parc, Graph, n_matrix, l_matrix)
 end
@@ -134,10 +136,14 @@ function get_edge_weight(c::Connectome)
     lt_w.nzval
 end
 
-function slice(c::Connectome, rois::DataFrame)
+function slice(c::Connectome, rois::DataFrame; norm=true)
     N = c.n_matrix[rois.ID, rois.ID]
     L = c.l_matrix[rois.ID, rois.ID]
-    A = replace(( N ./ L.^2), NaN => 0) |> symmetrise |> max_norm
-    G = SimpleWeightedGraph(A)
+    A = replace(( N ./ L.^2), NaN => 0)
+    if norm
+        G = A |> max_norm |> SimpleWeightedGraph
+    else
+        G = SimpleWeightedGraph(A)
+    end
     Connectome(rois, G, N, L)
 end
