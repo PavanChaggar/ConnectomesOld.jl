@@ -108,7 +108,9 @@ end
 
 f
 ```
- 
+
+# Using Makie Layouts
+
 Now say we want to add another brain to the image, using the `Makie` layout paradigm, we can add another `Axis` and change some of the layout properties before plotting a new brain. 
 
 
