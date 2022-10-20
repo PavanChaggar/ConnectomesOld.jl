@@ -42,45 +42,12 @@ f
 
 # Plotting Individual Regions
 
-A common use case will be to plot scalar fields across different brain regions. This is easy to do using `Connectomes.jl`. Let's look at an example where we just want to plot the subcortical regions of the brain atlas.
+A common use case will be to plot scalar fields across different brain regions. This is easy to do using `Connectomes.jl`. Let's look at an example where we just want to plot regions of the left hemisphere.
 
-First, we need to get the subcortical regions. We do this by first loading in a connectome and parcellation. In `Connectomes.jl` the default parcellation uses the DKT atlas.
-
-```@example plot
-
-c = Connectomes.connectome_path() |> Connectome 
-
-subcortex = filter(x -> x.Region == "subcortical", c.parc)
-```
-
-Now we know what the subcortical regions are, we can plot them. 
+First, we need to get the regions. We do this by first loading in a connectome and parcellation and then using `filter` to find the right regions. In `Connectomes.jl` the default parcellation uses the DKT atlas.
 
 ```@example plot
-# generate some colors for different regions
-using Colors 
-colors = distinguishable_colors(length(subcortex.ID))
 
-# make the Makie figure
-f = Figure(resolution=(800, 800))
-ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
-hidedecorations!(ax)
-hidespines!(ax)
-
-# add a cortex to the figure
-plot_cortex!()
-
-# loop over the regions and plot them!
-for (i, region) in enumerate(subcortex.ID)
-    plot_roi!(region, colors[i])
-end
-
-f
-```
-
-Instead of generating colors, we can also use a `ColorSchemes.jl` to define a colormap and get the color corresponding to a value between 0-1. 
-
-
-```@example plot
 # get regions in the left hemisphere
 c = Connectomes.connectome_path() |> Connectome 
 left = filter(x -> x.Hemisphere == "left", c.parc)
@@ -93,7 +60,7 @@ using ColorSchemes
 cmap = ColorSchemes.RdYlBu |> reverse
 
 # make the Makie figure
-f = Figure(resolution=(800, 800))
+f = Figure(resolution=(1200, 800))
 ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
 hidedecorations!(ax)
 hidespines!(ax)
@@ -115,32 +82,6 @@ Now say we want to add another brain to the image, using the `Makie` layout para
 
 
 ```@example plot
-# get regions in the left hemisphere
-c = Connectomes.connectome_path() |> Connectome 
-left = filter(x -> x.Hemisphere == "left", c.parc)
-
-# create some values we want to use for colors, these could be, for example, protein concentration
-p = rand(length(left.ID))
-
-# and define a colormap 
-using ColorSchemes
-cmap = ColorSchemes.RdYlBu |> reverse
-
-# make the Makie figure, note we're changing the figure resolution to accomodate the additional brain
-f = Figure(resolution=(1600, 800))
-ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
-hidedecorations!(ax)
-hidespines!(ax)
-
-# add a cortex to the figure
-plot_cortex!()
-
-# loop over the regions and plot them!
-for (i, region) in enumerate(left.ID)
-    plot_roi!(region, get(cmap, p[i]))
-end
-
-# make a new axis on the same figure, with different azimuth
 ax = Axis3(f[1,2], aspect=:data, azimuth = 1.0pi, elevation=0.0pi)
 hidedecorations!(ax)
 hidespines!(ax)
