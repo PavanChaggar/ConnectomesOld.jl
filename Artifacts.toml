@@ -1,0 +1,6 @@
+[DKTMeshes]
+git-tree-sha1 = "29be9fbaaa76a4b1ebbe409eabaceed674f7b7ac"
+
+    [[DKTMeshes.download]]
+    sha256 = "29fd3270c867371e364e2110c436ebf1b9219b268b6c93c9617d37dcf2e5536f"
+    url = "https://github.com/PavanChaggar/DKTMeshes/raw/main/DKTMeshes.tar.gz"
