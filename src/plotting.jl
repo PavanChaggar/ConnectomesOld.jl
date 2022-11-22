@@ -1,4 +1,4 @@
-const meshpath = artifacts"DKTMeshes/"
+const meshpath = artifact"DKTMeshes"
 mni_cortex() = joinpath(meshpath, "meshes/cortex/connectome-cortex.obj")
 fs_cortex() =  joinpath(meshpath, "meshes/cortex/fs-cortex.obj")
 rh_cortex() =  joinpath(meshpath, "meshes/cortex/rh-cortex.obj")
