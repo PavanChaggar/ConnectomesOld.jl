@@ -60,7 +60,7 @@ using ColorSchemes
 cmap = ColorSchemes.RdYlBu |> reverse
 
 # make the Makie figure
-f = Figure(resolution=(1200, 800))
+f = Figure(resolution=(800, 600))
 ax = Axis3(f[1,1], aspect=:data, azimuth = 0.0pi, elevation=0.0pi)
 hidedecorations!(ax)
 hidespines!(ax)
