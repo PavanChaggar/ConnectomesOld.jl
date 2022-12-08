@@ -1,7 +1,8 @@
-mni_cortex() = joinpath(assetpath, "meshes/cortex/connectome-cortex.obj")
-fs_cortex() =  joinpath(assetpath, "meshes/cortex/fs-cortex.obj")
-rh_cortex() =  joinpath(assetpath, "meshes/cortex/rh-cortex.obj")
-lh_cortex() =  joinpath(assetpath, "meshes/cortex/lh-cortex.obj")
+const meshpath = artifact"DKTMeshes"
+mni_cortex() = joinpath(meshpath, "meshes/cortex/connectome-cortex.obj")
+fs_cortex() =  joinpath(meshpath, "meshes/cortex/fs-cortex.obj")
+rh_cortex() =  joinpath(meshpath, "meshes/cortex/rh-cortex.obj")
+lh_cortex() =  joinpath(meshpath, "meshes/cortex/lh-cortex.obj")
 
 function set_fig(;resolution::Tuple{Int64, Int64}=(1600,900), view=:front)
     f = Figure(resolution = resolution)
@@ -39,7 +40,7 @@ function plot_parc!(connectome::Connectome, hemisphere::Symbol; alpha=1.0)
 
     colors = distinguishable_colors(length(h_ids))
     for (i, j) in enumerate(h_ids)
-        roi = load(assetpath * "DKT/roi_$(j).obj")
+        roi = load(meshpath * "DKT/roi_$(j).obj")
         mesh!(roi, color=(colors[i], alpha), transparency=false)
     end
 end
@@ -58,7 +59,7 @@ function plot_parc(connectome::Connectome; alpha=1.0)
 end
 
 function plot_roi!(roi::Int, color=(:grey,1.0); transparency=false)
-    meshpath = joinpath(assetpath, "meshes/DKT/roi_$(roi).obj")
+    meshpath = joinpath(meshpath, "meshes/DKT/roi_$(roi).obj")
     mesh!(load(meshpath), color=color, transparency=transparency)
 end
 

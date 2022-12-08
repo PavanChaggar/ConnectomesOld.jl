@@ -1,5 +1,6 @@
 module Connectomes
 
+using Artifacts
 using LightXML
 using DataFrames
 using SparseArrays
